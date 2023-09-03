@@ -3,12 +3,14 @@ import GoogleAPI from "./Components/GoogleAPI";
 import Home from "./Components/Home";
 
 function App() {
-  const [showPage, setShowPage] = useState(1);
+  const [showPage, setShowPage] = useState(0);
 
   return (
-    <div>
-      {showPage === 0 && <Home />}
-      {showPage === 1 && <GoogleAPI />}
+    <div className="indexPage">
+      <div className="indexItem">
+        {showPage === 0 && <Home setShowPage={setShowPage} />}
+        {showPage === 1 && <GoogleAPI />}
+      </div>
     </div>
   );
 }
