@@ -51,7 +51,7 @@ h4 {
 }
 /* Index (app) */
 
-/* Home (app) */
+/* Home */
 .homePage {
   margin-top: 20%;
 }
@@ -80,8 +80,43 @@ h4 {
   font-size: 20px;
   font-weight: 700;
   background-color: #304674;
-  color: white;
+  color: #d8e1e8;
   border-radius: 30px;
   margin-top: 0.5em;
 }
-/* Home (app) */
+/* Home */
+
+/* Location Services */
+.locationPage h2 {
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.locationPage p {
+  margin: 1em auto;
+  width: 70%;
+  font-size: 13px;
+}
+
+.locationServicesButton {
+  width: 80%;
+  padding: 5px 32px;
+  font-size: 20px;
+  font-weight: 700;
+  background-color: #304674;
+  color: #d8e1e8;
+  border-radius: 30px;
+  margin-top: 0.5em;
+}
+
+.locationServicesButton-not-allow {
+  width: 80%;
+  padding: 5px 32px;
+  font-size: 20px;
+  font-weight: 700;
+  background-color: white;
+  color: #304674;
+  border-radius: 30px;
+  margin-top: 0.5em;
+}
+/* Location Services */
