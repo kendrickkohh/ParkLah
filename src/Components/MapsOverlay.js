@@ -1,12 +1,14 @@
 import React from "react";
-import { TextField } from "@material-ui/core";
+import { TextField, Container } from "@material-ui/core";
 
-const mapsOverlay = () => {
+const MapsOverlay = () => {
   return (
     <div>
-      <TextField label="Search" variant="outlined"></TextField>
+      <Container maxWidth="md" sx={{ width: 600 }}>
+        <TextField label="Search" variant="outlined"></TextField>
+      </Container>
     </div>
   );
 };
 
-export default mapsOverlay;
+export default MapsOverlay;

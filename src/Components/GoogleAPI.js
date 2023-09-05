@@ -10,15 +10,13 @@ const GoogleAPI = () => {
   }
 
   return (
-    <div>
-      <GoogleMap
-        zoom={13}
-        center={{ lat: 1.29027, lng: 103.851959 }}
-        mapContainerStyle={{ width: "100%", height: "80%" }}
-      >
-        <Marker position={{ lat: 1.29027, lng: 103.851959 }} />
-      </GoogleMap>
-    </div>
+    <GoogleMap
+      zoom={13}
+      center={{ lat: 1.29027, lng: 103.851959 }}
+      mapContainerStyle={{ width: "100%", height: "100%" }}
+    >
+      <Marker position={{ lat: 1.29027, lng: 103.851959 }} />
+    </GoogleMap>
   );
 };
 

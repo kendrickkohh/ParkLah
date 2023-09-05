@@ -5,7 +5,7 @@ import LocationService from "./Components/LocationService";
 import MapsOverlay from "./Components/MapsOverlay";
 
 function App() {
-  const [showPage, setShowPage] = useState(3);
+  const [showPage, setShowPage] = useState(0);
 
   return (
     <div className="indexPage">
