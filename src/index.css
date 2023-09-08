@@ -120,3 +120,61 @@ h4 {
   margin-top: 0.5em;
 }
 /* Location Services */
+
+/* maps-overlay */ /* idk why need set the height */
+.maps-overlay-page {
+  height: 86%;
+}
+
+/* maps-overlay-searchbar */
+.maps-overlay-searchbar {
+  position: absolute;
+  top: 5%;
+  left: 7%;
+  width: 85%;
+  background: #d8e1e8;
+  margin: auto;
+  border-radius: 20px;
+  z-index: 10;
+  box-shadow: 2px 2px 2px grey;
+}
+
+.maps-overlay-searchbar-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+}
+
+.maps-overlay-searchbar-row input {
+  flex: 1;
+  height: 10%;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: #756c6c;
+}
+/* maps-overlay-searchbar */
+
+/* maps-overlay-navbar */
+.maps-overlay-navbar {
+  background-color: #304674;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.maps-overlay-navItem {
+  margin: 0.7em 0;
+  cursor: pointer;
+  width: 15%;
+}
+
+.maps-overlay-navItem h5 {
+  margin: 0;
+  color: #e3e3e3;
+}
+/* maps-overlay-navbar */
+/* maps-overlay */
