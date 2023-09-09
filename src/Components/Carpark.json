@@ -1,0 +1,32 @@
+[
+  {
+    "id": 0,
+    "name": "NTU Carpark D",
+    "latitude": 1.3475916161994006,
+    "longitude": 103.67932047251627
+  },
+  {
+    "id": 1,
+    "name": "NIE Car Park 7",
+    "latitude": 1.3505951319313205,
+    "longitude": 103.6793026428677
+  },
+  {
+    "id": 2,
+    "name": "J65",
+    "latitude": 1.3436849897795384,
+    "longitude": 103.69033545329508
+  },
+  {
+    "id": 3,
+    "name": "NTU Car Park S",
+    "latitude": 1.3419366697375052,
+    "longitude": 103.67957174848172
+  },
+  {
+    "id": 4,
+    "name": "Carpark K (Hall 6)",
+    "latitude": 1.3495467225094866,
+    "longitude": 103.68752785335955
+  }
+]

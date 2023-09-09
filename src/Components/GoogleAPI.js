@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
-const GoogleAPI = () => {
+const GoogleAPI = ({ filteredCarparks }) => {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
 
   const [userLocation, setUserLocation] = useState(null);
+  // const [selectedGymId, setSelectedGymId] = useState(null);
 
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -29,6 +30,20 @@ const GoogleAPI = () => {
       center={userLocation}
       mapContainerStyle={{ width: "100%", height: "100%" }}
     >
+      {filteredCarparks.map((item) => {
+        return (
+          <Marker
+            position={{ lat: item.latitude, lng: item.longitude }}
+            icon={{
+              url: "./images/carparkpin.png",
+              scaledSize: new window.google.maps.Size(30, 30),
+            }}
+            // onClick={() => {
+            //   setSelectedGymId(item.id);
+            // }}
+          />
+        );
+      })}
       {userLocation && <Marker position={userLocation} />}
     </GoogleMap>
   );

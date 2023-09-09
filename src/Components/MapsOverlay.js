@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import GoogleAPI from "./GoogleAPI";
+import SearchIcon from "@mui/icons-material/Search";
 
-const MapsOverlay = () => {
+const MapsOverlay = ({ carpark }) => {
   const [selected, setSelected] = useState(0);
+  const [searchText, setSearchText] = useState("");
+  const [filteredCarparks, setfilteredCarparks] = useState([]);
   const mapsObject = [
     {
       image: "/images/menuFinder.png",
@@ -36,14 +39,33 @@ const MapsOverlay = () => {
     },
   ];
 
+  const handleSearch = () => {
+    const filtered = carpark.filter((g) =>
+      g.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setfilteredCarparks(filtered);
+  };
+
   return (
     <div className="maps-overlay-page">
       <div className="maps-overlay-searchbar">
         <div className="maps-overlay-searchbar-row">
-          <input type="text" placeholder="Search" />
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <SearchIcon
+            className="maps-overlay-searchbar-icon"
+            onClick={handleSearch}
+          />
         </div>
       </div>
-      <GoogleAPI />
+
+      <GoogleAPI filteredCarparks={filteredCarparks} />
+
       <div className="maps-overlay-navbar">
         {mapsObject.map((item) => {
           return (
@@ -54,10 +76,10 @@ const MapsOverlay = () => {
               }}
             >
               <img
-                src={selected == item.index ? item.imageYellow : item.image}
+                src={selected === item.index ? item.imageYellow : item.image}
                 alt={item.title}
               />
-              {selected == item.index ? (
+              {selected === item.index ? (
                 <h5 style={{ color: "#DBAB00" }}>{item.title}</h5>
               ) : (
                 <h5>{item.title}</h5>
