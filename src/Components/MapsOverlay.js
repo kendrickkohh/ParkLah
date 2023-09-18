@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import GoogleAPI from "./GoogleAPI";
-import SearchIcon from "@mui/icons-material/Search";
+import Map from "./map.tsx";
+import { useJsApiLoader } from "@react-google-maps/api";
 
 const MapsOverlay = ({ carpark }) => {
   const [selected, setSelected] = useState(0);
@@ -39,33 +39,28 @@ const MapsOverlay = ({ carpark }) => {
     },
   ];
 
-  const handleSearch = () => {
-    const filtered = carpark.filter((g) =>
-      g.name.toLowerCase().includes(searchText.toLowerCase())
-    );
-    setfilteredCarparks(filtered);
-  };
+  // load GoogleMaps API
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries: ["places"],
+  });
+
+  if (!isLoaded) {
+    return <h1>Loading...</h1>;
+  }
+
+  // const handleSearch = () => {
+  //   const filtered = carpark.filter((g) =>
+  //     g.name.toLowerCase().includes(searchText.toLowerCase())
+  //   );
+  //   setfilteredCarparks(filtered);
+  // };
 
   return (
     <div className="maps-overlay-page">
-      <div className="maps-overlay-searchbar">
-        <div className="maps-overlay-searchbar-row">
-          <input
-            type="text"
-            placeholder="Search"
-            onChange={(e) => {
-              setSearchText(e.target.value);
-            }}
-          />
-          <SearchIcon
-            className="maps-overlay-searchbar-icon"
-            onClick={handleSearch}
-          />
-        </div>
+      <div className="maps-overlay-maps">
+        <Map></Map>
       </div>
-
-      <GoogleAPI filteredCarparks={filteredCarparks} />
-
       <div className="maps-overlay-navbar">
         {mapsObject.map((item) => {
           return (

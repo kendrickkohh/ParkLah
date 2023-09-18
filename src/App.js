@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Home from "./Components/Home";
 import LocationService from "./Components/LocationService";
-import MapsOverlay from "./Components/MapsOverlay";
+import MapsOverlay from "./Components/MapsOverlay.js";
 import carpark from "./Components/Carpark.json";
 
 function App() {
