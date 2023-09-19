@@ -36,6 +36,9 @@ export default function Map() {
   //onLoad function
   const onLoad = useCallback((map) => (mapRef.current = map), []);
 
+  // generating random houses
+  // const houses = useMemo(() => generateHouses(carpark), [carpark]);
+
   // Get current position
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -67,7 +70,14 @@ export default function Map() {
         onLoad={onLoad}
       >
         {userLocation && <Marker position={userLocation} />}
-        {carpark && <Marker position={carpark} />}
+        {carpark && (
+          <>
+            <Marker position={carpark} />
+            <Circle center={carpark} radius={1000} options={closeOptions} />
+            <Circle center={carpark} radius={2000} options={middleOptions} />
+            <Circle center={carpark} radius={3000} options={farOptions} />
+          </>
+        )}
       </GoogleMap>
     </div>
   );
@@ -102,3 +112,16 @@ const farOptions = {
   strokeColor: "#FF5252",
   fillColor: "#FF5252",
 };
+
+// Generate random houses
+// const generateHouses = (position: LatLngLiteral) => {
+//   const _houses: Array<LatLngLiteral> = [];
+//   for (let i = 0; i < 100; i++) {
+//     const direction = Math.random() < 0.5 ? -2 : 2;
+//     _houses.push({
+//       lat: position.lat + Math.random() / direction,
+//       lng: position.lng + Math.random() / direction,
+//     });
+//   }
+//   return _houses;
+// };
