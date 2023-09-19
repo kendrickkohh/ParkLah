@@ -53,7 +53,15 @@ h4 {
 
 /* Home */
 .homePage {
-  margin-top: 20%;
+  background-image: linear-gradient(#304674, #d8e1e8);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-radius: 15px;
+}
+
+.homePageitem {
+  margin-top: 27%;
 }
 
 .homePageDesc {
@@ -65,7 +73,7 @@ h4 {
   font-weight: 700;
   font-size: 22px;
   margin: 0;
-  margin-top: 0.5em;
+  margin-top: 1em;
 }
 
 .homePageDesc h4 {

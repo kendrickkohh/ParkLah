@@ -72,10 +72,11 @@ export default function Map() {
         {userLocation && <Marker position={userLocation} />}
         {carpark && (
           <>
+            {/* icon={"/images/carparkIcon.svg"} */}
             <Marker position={carpark} />
-            <Circle center={carpark} radius={1000} options={closeOptions} />
-            <Circle center={carpark} radius={2000} options={middleOptions} />
-            <Circle center={carpark} radius={3000} options={farOptions} />
+            <Circle center={carpark} radius={200} options={closeOptions} />
+            <Circle center={carpark} radius={400} options={middleOptions} />
+            <Circle center={carpark} radius={600} options={farOptions} />
           </>
         )}
       </GoogleMap>
