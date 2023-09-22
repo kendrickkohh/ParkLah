@@ -10,18 +10,17 @@ import {
   Marker,
   DirectionsRenderer,
   Circle,
-  MarkerClusterer,
 } from "@react-google-maps/api";
 import Places from "./places.tsx";
-// import Distance from "./distance";
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectionsResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
 
-export default function Map() {
+export default function Map({ carpark }) {
   const [userLocation, setUserLocation] = useState<LatLngLiteral>();
-  const [carpark, setCarpark] = useState<LatLngLiteral>();
+  const [destination, setDestination] = useState<LatLngLiteral>();
+  const [directions, setDirections] = useState<DirectionsResult>();
   const mapRef = useRef<GoogleMap>();
 
   // Remove default UI
@@ -36,9 +35,6 @@ export default function Map() {
   //onLoad function
   const onLoad = useCallback((map) => (mapRef.current = map), []);
 
-  // generating random houses
-  // const houses = useMemo(() => generateHouses(carpark), [carpark]);
-
   // Get current position
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -51,12 +47,32 @@ export default function Map() {
     }
   }, []);
 
+  // Fetch positions, retrieve position of clicked icon
+  const fetchDirections = (lat, lng) => {
+    if (!destination) return;
+
+    const service = new google.maps.DirectionsService();
+
+    service.route(
+      {
+        origin: userLocation,
+        destination: { lat: lat, lng: lng },
+        travelMode: google.maps.TravelMode.DRIVING,
+      },
+      (result, status) => {
+        if (status === "OK" && result) {
+          setDirections(result);
+        }
+      }
+    );
+  };
+
   return (
     <div className="map">
       <div className="maps-overlay-searchbar">
         <Places
-          setCarpark={(position) => {
-            setCarpark(position);
+          setDestination={(position) => {
+            setDestination(position);
             mapRef.current?.panTo(position);
           }}
         />
@@ -69,14 +85,36 @@ export default function Map() {
         options={options}
         onLoad={onLoad}
       >
+        {directions && (
+          <DirectionsRenderer
+            directions={directions}
+            options={{
+              polylineOptions: {
+                zIndex: 50,
+                strokeColor: "#1976D2",
+                strokeWeight: 5,
+              },
+            }}
+          />
+        )}
         {userLocation && <Marker position={userLocation} />}
-        {carpark && (
+        {destination && (
           <>
             {/* icon={"/images/carparkIcon.svg"} */}
-            <Marker position={carpark} />
-            <Circle center={carpark} radius={200} options={closeOptions} />
-            <Circle center={carpark} radius={400} options={middleOptions} />
-            <Circle center={carpark} radius={600} options={farOptions} />
+            <Marker position={destination} />
+            {carpark.map((item) => (
+              <Marker
+                key={item.id}
+                position={{ lat: item.latitude, lng: item.longitude }}
+                icon={"/images/carparkIcon.svg"}
+                onClick={() => {
+                  fetchDirections(item.latitude, item.longitude);
+                }}
+              />
+            ))}
+            <Circle center={destination} radius={200} options={closeOptions} />
+            <Circle center={destination} radius={400} options={middleOptions} />
+            <Circle center={destination} radius={600} options={farOptions} />
           </>
         )}
       </GoogleMap>
@@ -113,16 +151,3 @@ const farOptions = {
   strokeColor: "#FF5252",
   fillColor: "#FF5252",
 };
-
-// Generate random houses
-// const generateHouses = (position: LatLngLiteral) => {
-//   const _houses: Array<LatLngLiteral> = [];
-//   for (let i = 0; i < 100; i++) {
-//     const direction = Math.random() < 0.5 ? -2 : 2;
-//     _houses.push({
-//       lat: position.lat + Math.random() / direction,
-//       lng: position.lng + Math.random() / direction,
-//     });
-//   }
-//   return _houses;
-// };

@@ -4,8 +4,8 @@ import { useJsApiLoader } from "@react-google-maps/api";
 
 const MapsOverlay = ({ carpark }) => {
   const [selected, setSelected] = useState(0);
-  const [searchText, setSearchText] = useState("");
-  const [filteredCarparks, setfilteredCarparks] = useState([]);
+  // const [searchText, setSearchText] = useState("");
+  // const [filteredCarparks, setfilteredCarparks] = useState([]);
   const mapsObject = [
     {
       image: "/images/menuFinder.png",
@@ -59,7 +59,7 @@ const MapsOverlay = ({ carpark }) => {
   return (
     <div className="maps-overlay-page">
       <div className="maps-overlay-maps">
-        <Map></Map>
+        <Map carpark={carpark}></Map>
       </div>
       <div className="maps-overlay-navbar">
         {mapsObject.map((item) => {

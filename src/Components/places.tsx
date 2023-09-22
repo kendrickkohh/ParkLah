@@ -13,10 +13,10 @@ import {
 import "@reach/combobox/styles.css";
 
 type PlacesProps = {
-  setCarpark: (position: google.maps.LatLngLiteral) => void;
+  setDestination: (position: google.maps.LatLngLiteral) => void;
 };
 
-export default function Places({ setCarpark }: PlacesProps) {
+export default function Places({ setDestination }: PlacesProps) {
   const {
     ready,
     value,
@@ -31,7 +31,7 @@ export default function Places({ setCarpark }: PlacesProps) {
 
     const results = await getGeocode({ address: val });
     const { lat, lng } = await getLatLng(results[0]);
-    setCarpark({ lat, lng });
+    setDestination({ lat, lng });
   };
 
   return (
