@@ -130,7 +130,7 @@
     "Area": "Orchard",
     "Development": "Mandarin Hotel",
     "Location": "1.30216 103.83601",
-    "AvailableLots": -31,
+    "AvailableLots": 31,
     "LotType": "C",
     "Agency": "LTA"
   },

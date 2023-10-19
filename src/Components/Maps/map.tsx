@@ -21,6 +21,9 @@ export default function Map({ carpark }) {
   const [userLocation, setUserLocation] = useState<LatLngLiteral>();
   const [destination, setDestination] = useState<LatLngLiteral>();
   const [directions, setDirections] = useState<DirectionsResult>();
+  const [carparksFiltered, setCarparksFiltered] = useState<
+    Array<LatLngLiteral>
+  >([]);
   const mapRef = useRef<GoogleMap>();
 
   // Remove default UI
@@ -74,12 +77,35 @@ export default function Map({ carpark }) {
     return [latitude, longitude];
   };
 
+  const handleSearch = (carpark, position) => {
+    let filteredCarparks: Array<LatLngLiteral> = [];
+
+    carpark.forEach((item) => {
+      const location = returnLatLong(item.Location);
+      const latitude = parseFloat(location[0]);
+      const longitude = parseFloat(location[1]);
+
+      const distance = Math.sqrt(
+        Math.pow(latitude - position.lat, 2) +
+          Math.pow(longitude - position.lng, 2)
+      );
+
+      // Check if the distance is less than or equal to 0.006 (approx. 600m in a simplified context)
+      if (distance <= 0.006) {
+        filteredCarparks.push({ lat: latitude, lng: longitude });
+      }
+    });
+
+    return filteredCarparks;
+  };
+
   return (
     <div className="map">
       <div className="maps-overlay-searchbar">
         <Places
           setDestination={(position) => {
             setDestination(position);
+            setCarparksFiltered(handleSearch(carpark, position));
             mapRef.current?.panTo(position);
           }}
         />
@@ -109,18 +135,14 @@ export default function Map({ carpark }) {
           <>
             {/* icon={"/images/carparkIcon.svg"} */}
             <Marker position={destination} />
-            {carpark.map((item) => {
-              const location = returnLatLong(item.Location);
-              const latitude = parseFloat(location[0]); // Convert latitude to float
-              const longitude = parseFloat(location[1]); // Convert longitude to float
-
+            {carparksFiltered.map((item) => {
               return (
                 <Marker
-                  key={item.CarParkID}
-                  position={{ lat: latitude, lng: longitude }}
+                  // key={latitude}
+                  position={{ lat: item.lat, lng: item.lng }}
                   icon={"/images/carparkIcon.svg"}
                   onClick={() => {
-                    fetchDirections(latitude, longitude);
+                    fetchDirections(item.lat, item.lng);
                   }}
                 />
               );

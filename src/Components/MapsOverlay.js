@@ -4,9 +4,6 @@ import { useJsApiLoader } from "@react-google-maps/api";
 import Navbar from "./Navbar/Navbar.js";
 
 const MapsOverlay = ({ carpark, selected, setSelected, setShowPage }) => {
-  // const [searchText, setSearchText] = useState("");
-  // const [filteredCarparks, setfilteredCarparks] = useState([]);
-
   // load GoogleMaps API
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -16,13 +13,6 @@ const MapsOverlay = ({ carpark, selected, setSelected, setShowPage }) => {
   if (!isLoaded) {
     return <h1>Loading...</h1>;
   }
-
-  // const handleSearch = () => {
-  //   const filtered = carpark.filter((g) =>
-  //     g.name.toLowerCase().includes(searchText.toLowerCase())
-  //   );
-  //   setfilteredCarparks(filtered);
-  // };
 
   return (
     <div className="maps-overlay-page">
