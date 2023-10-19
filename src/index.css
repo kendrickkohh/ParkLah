@@ -238,6 +238,7 @@ h4 {
 .page-header {
   background-color: #304674;
   color: #dbab00;
+  border-radius: 15px 15px 0 0;
 }
 
 .page-header h3 {
@@ -270,6 +271,7 @@ h4 {
   border: solid black 1px;
   display: grid;
   grid-template-columns: 80% 20%;
+  border-radius: 5px;
 }
 
 .saved-arrow {

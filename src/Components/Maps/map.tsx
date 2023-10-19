@@ -91,7 +91,7 @@ export default function Map({ carpark }) {
       );
 
       // Check if the distance is less than or equal to 0.006 (approx. 600m in a simplified context)
-      if (distance <= 0.006) {
+      if (distance <= 0.0054) {
         filteredCarparks.push({ lat: latitude, lng: longitude });
       }
     });
@@ -133,7 +133,6 @@ export default function Map({ carpark }) {
         {userLocation && <Marker position={userLocation} />}
         {destination && (
           <>
-            {/* icon={"/images/carparkIcon.svg"} */}
             <Marker position={destination} />
             {carparksFiltered.map((item) => {
               return (

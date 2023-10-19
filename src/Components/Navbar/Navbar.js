@@ -9,12 +9,6 @@ const Navbar = ({ selected, setSelected, setShowPage }) => {
       index: 2,
     },
     {
-      image: "/images/menuGo.png",
-      imageYellow: "/images/menuGoYellow.png",
-      title: "Go",
-      index: 2,
-    },
-    {
       image: "/images/menuSaved.png",
       imageYellow: "/images/menuSavedYellow.png",
       title: "Saved",
