@@ -3,7 +3,7 @@ import Home from "./Components/Home";
 import LocationService from "./Components/LocationService";
 import MapsOverlay from "./Components/MapsOverlay.js";
 import SavedOverlay from "./Components/SavedOverlay.js";
-import carpark from "./Components/Carpark.json";
+import carpark from "./Components/all_carparks.json";
 import SearchOverlay from "./Components/SearchOverlay";
 import ProfileOverlay from "./Components/ProfileOverlay";
 

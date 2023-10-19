@@ -67,6 +67,13 @@ export default function Map({ carpark }) {
     );
   };
 
+  const returnLatLong = (locationString) => {
+    const coordinates = locationString.split(" ");
+    const latitude = coordinates[0];
+    const longitude = coordinates[1];
+    return [latitude, longitude];
+  };
+
   return (
     <div className="map">
       <div className="maps-overlay-searchbar">
@@ -79,7 +86,7 @@ export default function Map({ carpark }) {
       </div>
 
       <GoogleMap
-        zoom={13}
+        zoom={14}
         center={userLocation}
         mapContainerClassName="map-container"
         options={options}
@@ -102,16 +109,22 @@ export default function Map({ carpark }) {
           <>
             {/* icon={"/images/carparkIcon.svg"} */}
             <Marker position={destination} />
-            {carpark.map((item) => (
-              <Marker
-                key={item.id}
-                position={{ lat: item.latitude, lng: item.longitude }}
-                icon={"/images/carparkIcon.svg"}
-                onClick={() => {
-                  fetchDirections(item.latitude, item.longitude);
-                }}
-              />
-            ))}
+            {carpark.map((item) => {
+              const location = returnLatLong(item.Location);
+              const latitude = parseFloat(location[0]); // Convert latitude to float
+              const longitude = parseFloat(location[1]); // Convert longitude to float
+
+              return (
+                <Marker
+                  key={item.CarParkID}
+                  position={{ lat: latitude, lng: longitude }}
+                  icon={"/images/carparkIcon.svg"}
+                  onClick={() => {
+                    fetchDirections(latitude, longitude);
+                  }}
+                />
+              );
+            })}
             <Circle center={destination} radius={200} options={closeOptions} />
             <Circle center={destination} radius={400} options={middleOptions} />
             <Circle center={destination} radius={600} options={farOptions} />
