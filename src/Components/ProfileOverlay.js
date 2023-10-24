@@ -4,7 +4,7 @@ import Navbar from "./Navbar/Navbar";
 const Profile = ({ selected, setSelected, setShowPage }) => {
   return (
     <div className="maps-overlay-page">
-      Profile
+      <div className="profile-main">profile</div>
       <Navbar
         selected={selected}
         setSelected={setSelected}
