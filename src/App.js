@@ -3,7 +3,6 @@ import Home from "./Components/Home";
 import LocationService from "./Components/LocationService";
 import MapsOverlay from "./Components/MapsOverlay.js";
 import SavedOverlay from "./Components/SavedOverlay.js";
-import carpark from "./Components/all_carparks.json";
 import car_park_availability from "./Components/car_park_availability.json";
 import car_park_details from "./Components/car_park_details.json";
 import SearchOverlay from "./Components/SearchOverlay";
@@ -20,7 +19,6 @@ function App() {
         {showPage === 1 && <LocationService setShowPage={setShowPage} />}
         {showPage === 2 && (
           <MapsOverlay
-            carpark={carpark}
             car_park_availability={car_park_availability}
             car_park_details={car_park_details}
             selected={selected}

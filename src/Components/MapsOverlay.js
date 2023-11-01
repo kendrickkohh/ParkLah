@@ -4,7 +4,6 @@ import { useJsApiLoader } from "@react-google-maps/api";
 import Navbar from "./Navbar/Navbar.js";
 
 const MapsOverlay = ({
-  carpark,
   car_park_details,
   car_park_availability,
   selected,
@@ -25,7 +24,6 @@ const MapsOverlay = ({
     <div className="maps-overlay-page">
       <div className="maps-overlay-maps">
         <Map
-          carpark={carpark}
           car_park_availability={car_park_availability}
           car_park_details={car_park_details}
         ></Map>

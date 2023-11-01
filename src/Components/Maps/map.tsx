@@ -18,11 +18,7 @@ type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectionsResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
 
-export default function Map({
-  carpark,
-  car_park_details,
-  car_park_availability,
-}) {
+export default function Map({ car_park_details, car_park_availability }) {
   const [userLocation, setUserLocation] = useState<LatLngLiteral>();
   const [destination, setDestination] = useState<LatLngLiteral>();
   const [directions, setDirections] = useState<DirectionsResult>();
@@ -88,24 +84,31 @@ export default function Map({
 
     carpark.Result.map((item) => {
       const { weekdayMin, ppName, ppCode, geometries } = item;
-
       if (geometries?.[0]?.coordinates) {
         const coordinates = geometries[0].coordinates.split(",");
         const { lat, lon } = svy21Converter.computeLatLon(
           coordinates[1],
           coordinates[0]
         );
-
         const distance = Math.sqrt(
           Math.pow(lat - position.lat, 2) + Math.pow(lon - position.lng, 2)
         );
-
         // Check if the distance is less than or equal to 0.006 (approx. 600m in a simplified context)
-        if (distance <= 0.0054) filteredCarparks.push({ lat: lat, lng: lon });
+        if (distance <= 0.0054) {
+          const coordinate = { lat, lng: lon };
+
+          // Check if the coordinate is not already in the filteredCarparks array
+          if (
+            !filteredCarparks.some(
+              (coord) => coord.lat === lat && coord.lng === lon
+            )
+          ) {
+            filteredCarparks.push(coordinate);
+          }
+        }
       }
       //const location = ppName;
     });
-
     return filteredCarparks;
   };
 
