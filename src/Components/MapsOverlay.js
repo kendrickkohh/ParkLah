@@ -3,7 +3,14 @@ import Map from "./Maps/map.tsx";
 import { useJsApiLoader } from "@react-google-maps/api";
 import Navbar from "./Navbar/Navbar.js";
 
-const MapsOverlay = ({ carpark, selected, setSelected, setShowPage }) => {
+const MapsOverlay = ({
+  carpark,
+  car_park_details,
+  car_park_availability,
+  selected,
+  setSelected,
+  setShowPage,
+}) => {
   // load GoogleMaps API
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -17,7 +24,11 @@ const MapsOverlay = ({ carpark, selected, setSelected, setShowPage }) => {
   return (
     <div className="maps-overlay-page">
       <div className="maps-overlay-maps">
-        <Map carpark={carpark}></Map>
+        <Map
+          carpark={carpark}
+          car_park_availability={car_park_availability}
+          car_park_details={car_park_details}
+        ></Map>
       </div>
       <Navbar
         selected={selected}
