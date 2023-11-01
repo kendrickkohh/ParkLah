@@ -1,9 +1,25 @@
-import React from 'react'
+import React from "react";
 
-const Home = () => {
+const Home = ({ setShowPage }) => {
   return (
-    <div>Home</div>
-  )
-}
+    <div className="homePage">
+      <div className="homePageitem">
+        <img src="/images/appLogo.svg" alt="homeLogo" />
+        <div className="homePageDesc">
+          <h2>Welcome to ParkLah!</h2>
+          <h4>Your Ultimate Parking Companion.</h4>
+        </div>
+        <button
+          className="homeButton"
+          onClick={() => {
+            setShowPage(1);
+          }}
+        >
+          START
+        </button>
+      </div>
+    </div>
+  );
+};
 
-export default Home
+export default Home;
