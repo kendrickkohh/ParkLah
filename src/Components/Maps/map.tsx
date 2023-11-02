@@ -25,12 +25,12 @@ export default function Map({ car_park_details, car_park_availability }) {
   const [carparksFiltered, setCarparksFiltered] = useState<
     Array<LatLngLiteral>
   >([]);
-  const [carparksFilteredNames, setCarparksFilteredNames] = useState<string[]>(
-    []
-  );
-  const [carparksFilteredPrice, setCarparksFilteredPrice] = useState<string[]>(
-    []
-  );
+  const [carparksFilteredNames, setCarparksFilteredNames] = useState<
+    Array<String>
+  >([]);
+  const [carparksFilteredPrice, setCarparksFilteredPrice] = useState<
+    Array<String>
+  >([]);
   const [mapsPopup, setMapsPopup] = useState(false);
   const mapRef = useRef<GoogleMap>();
 
@@ -87,10 +87,10 @@ export default function Map({ car_park_details, car_park_availability }) {
 
   const handleSearch = (carpark, position) => {
     let filteredCarparks: Array<LatLngLiteral> = [];
+    let filteredCarparkNames: Array<String> = [];
+    let filteredCarparkPrice: Array<String> = [];
+
     const svy21Converter = new SVY21();
-    setCarparksFiltered([]);
-    // setCarparksFilteredNames([]);
-    // setCarparksFilteredPrice([]);
     carpark.Result.map((item) => {
       const { weekdayMin, weekdayRate, ppName, ppCode, geometries } = item;
       if (geometries?.[0]?.coordinates) {
@@ -113,14 +113,13 @@ export default function Map({ car_park_details, car_park_availability }) {
             )
           ) {
             filteredCarparks.push(coordinate);
-            carparksFilteredNames.push(ppName);
-            carparksFilteredPrice.push(weekdayRate + "/" + weekdayMin);
+            filteredCarparkNames.push(ppName);
+            filteredCarparkPrice.push(weekdayRate + "/" + weekdayMin);
           }
         }
       }
     });
-
-    return filteredCarparks;
+    return { filteredCarparks, filteredCarparkNames, filteredCarparkPrice };
   };
 
   var SVY21 = function () {
@@ -326,7 +325,14 @@ export default function Map({ car_park_details, car_park_availability }) {
       <div className="maps-overlay-searchbar">
         <Places
           setDestination={(position) => {
-            setCarparksFiltered(handleSearch(car_park_details, position));
+            const {
+              filteredCarparks,
+              filteredCarparkNames,
+              filteredCarparkPrice,
+            } = handleSearch(car_park_details, position);
+            setCarparksFiltered(filteredCarparks);
+            setCarparksFilteredNames(filteredCarparkNames);
+            setCarparksFilteredPrice(filteredCarparkPrice);
             setDestination(position);
             setMapsPopup(true);
             mapRef.current?.panTo(position);
@@ -357,9 +363,10 @@ export default function Map({ car_park_details, car_park_availability }) {
         {destination && (
           <>
             <Marker position={destination} />
-            {carparksFiltered.map((item) => {
+            {carparksFiltered.map((item, index) => {
               return (
                 <Marker
+                  key={index}
                   position={{ lat: item.lat, lng: item.lng }}
                   icon={"/images/carparkIcon.svg"}
                   onClick={() => {
@@ -378,6 +385,7 @@ export default function Map({ car_park_details, car_park_availability }) {
             carparksFiltered={carparksFiltered}
             carparksFilteredNames={carparksFilteredNames}
             carparksFilteredPrice={carparksFilteredPrice}
+            setMapsPopup={setMapsPopup}
           />
         )}
       </GoogleMap>

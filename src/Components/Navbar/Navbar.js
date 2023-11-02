@@ -29,10 +29,11 @@ const Navbar = ({ selected, setSelected, setShowPage }) => {
   ];
   return (
     <div className="maps-overlay-navbar">
-      {mapsObject.map((item) => {
+      {mapsObject.map((item, index) => {
         return (
           <div
             className="maps-overlay-navItem"
+            key={index}
             onClick={() => {
               setSelected(item.index);
               setShowPage(item.index);

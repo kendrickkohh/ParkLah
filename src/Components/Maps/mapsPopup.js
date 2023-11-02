@@ -5,6 +5,7 @@ const mapsPopup = ({
   carparksFiltered,
   carparksFilteredNames,
   carparksFilteredPrice,
+  setMapsPopup,
 }) => {
   console.log(carparksFilteredNames);
   return (
@@ -12,7 +13,7 @@ const mapsPopup = ({
       <div className="mapsPopup-list">
         {carparksFiltered.map((item, index) => {
           return (
-            <div className="mapsPopup-list-item">
+            <div className="mapsPopup-list-item" key={index}>
               <div className="mapsPopup-list-item-a">
                 <h3>{carparksFilteredNames[index]}</h3>
                 <p>Price: {carparksFilteredPrice[index]}</p>
@@ -30,6 +31,7 @@ const mapsPopup = ({
                       item.lng +
                       "&travelmode=driving";
                     window.open(url, "_blank");
+                    setMapsPopup(false);
                   }}
                 />
               </div>
