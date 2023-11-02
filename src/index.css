@@ -324,3 +324,121 @@ h4 {
   font-size: large;
 }
 /* search-main */
+
+/* profile main */
+.profile-main{
+  /* text-align: middle; */
+  padding: 1em 2em;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.profileButton {
+  margin-top: 1em;
+  width: 70%;
+  height: 35px;
+  border-radius: 15px;
+  background-color: #304674;
+  color: #DBAB00;
+  font-weight: bold;
+  font-size: large;
+}
+
+.profilePreferences{
+  text-align: left;
+  margin-bottom: 1em;
+  padding-left: 0.5em;
+  /* border: solid black 1px; */
+  display: grid;
+  grid-template-columns: 80% 20%;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.preferenceButtonContainer {
+  display: flex;
+  justify-content: space-evenly;
+  /* gap: 1em; */
+  align-items: center;
+}
+
+.preferenceLeftButton,
+.preferenceRightButton {
+  height: 130px;
+  width: 150px;
+  /* border-radius: 15px; */
+  background-color: transparent;
+  background-size: contain;
+  background-repeat: no-repeat;
+  color: transparent;
+  margin-left: 2em;
+  margin-bottom: -1em;
+}
+
+.preferenceLeftButton {
+  background-image: url('/public/images/distance.svg');
+  margin-left: 3em;
+}
+
+.preferenceRightButton {
+  background-image: url('/public/images/cost.svg');
+}
+
+/* Styles for the dropdown button */
+.dropbtn {
+  background-color: #B2CBDE;
+  color: #1E1E1E;
+  padding: 5px;
+  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 2em;
+  margin-left: 1em;
+  width: 300px;
+  height: 30px;
+  border-radius: 15px;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.6);
+}
+
+/* Container for positioning */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  border: solid #666363 1px;
+  border-radius: 5px;
+  min-width: 160px;
+  box-shadow: 0px 8px 25px 0px rgba(0, 0, 0, 0.2);
+  margin-left: 1.7em;
+  margin-top: -1.8em;
+  z-index: 1;
+  width: 275px;
+  top: 100%; /* Position the dropdown options below the button */
+}
+
+/* Show the dropdown content on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Styles for the dropdown options */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px solid #666363
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}

@@ -13,7 +13,7 @@ const Profile = ({ selected, setSelected, setShowPage }) => {
               <div className="saved-list-item-a">
                 <h3>Distance</h3>
                 <div class="dropdown">
-                <button class="dropbtn">Distance Selector</button>
+                <button class="dropbtn">Please select preferred distance range</button>
                 <div class="dropdown-content">
                   <a href="#">0 - 200m</a>
                   <a href="#">200m - 400m</a>
@@ -28,7 +28,7 @@ const Profile = ({ selected, setSelected, setShowPage }) => {
               <div className="saved-list-item-a">
                 <h3>Cost</h3>
                 <div class="dropdown">
-                <button class="dropbtn">Cost Selector</button>
+                <button class="dropbtn">Please select preferred cost range</button>
                   <div class="dropdown-content">
                     <a href="#">$1 - $2.50</a>
                     <a href="#">$2.50 - $3.50</a>
