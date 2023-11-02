@@ -1,17 +1,22 @@
 import React from "react";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-const mapsPopup = ({ carparksFiltered }) => {
+const mapsPopup = ({
+  carparksFiltered,
+  carparksFilteredNames,
+  carparksFilteredPrice,
+}) => {
+  console.log(carparksFilteredNames);
   return (
     <div className="mapsPopup">
       <div className="mapsPopup-list">
-        {carparksFiltered.map((item) => {
+        {carparksFiltered.map((item, index) => {
           return (
             <div className="mapsPopup-list-item">
               <div className="mapsPopup-list-item-a">
-                <h3>{item.title}</h3>
-                <p>Final Destination: {item.finalDestination}</p>
-                <p>Price: {item.price}</p>
+                <h3>{carparksFilteredNames[index]}</h3>
+                <p>Price: {carparksFilteredPrice[index]}</p>
+                <p>Availability: {item.price}</p>
               </div>
               <div className="mapsPopup-list-item-b">
                 <ArrowForwardIcon
