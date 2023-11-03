@@ -430,9 +430,9 @@ h4 {
 /* Styles for the dropdown button */
 .dropbtn {
   background-color: #B2CBDE;
-  color: #1E1E1E;
+  color: #666363;
   padding: 5px;
-  font-size: 16px;
+  font-size: 12px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   border: none;
@@ -461,7 +461,7 @@ h4 {
   min-width: 160px;
   box-shadow: 0px 8px 25px 0px rgba(0, 0, 0, 0.2);
   margin-left: 1.7em;
-  margin-top: -1.8em;
+  margin-top: -1.4em;
   z-index: 1;
   width: 275px;
   top: 100%; /* Position the dropdown options below the button */
@@ -484,4 +484,9 @@ h4 {
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
   background-color: #f1f1f1;
+}
+
+.profile-main h3{
+  font-weight: 600;
+  font-size: 16px;
 }

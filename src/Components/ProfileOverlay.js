@@ -14,12 +14,12 @@ const Profile = ({ selected, setSelected, setShowPage }) => {
             <h3>Distance</h3>
             <div class="dropdown">
               <button class="dropbtn">
-                Please select preferred distance range
+                Please select preferred max distance 
               </button>
               <div class="dropdown-content">
-                <a href="#">0 - 200m</a>
-                <a href="#">200m - 400m</a>
-                <a href="#">400m - 600m</a>
+                <a href="#">200m</a>
+                <a href="#">400m</a>
+                <a href="#">600m</a>
               </div>
             </div>
           </div>
@@ -30,13 +30,13 @@ const Profile = ({ selected, setSelected, setShowPage }) => {
             <h3>Cost</h3>
             <div class="dropdown">
               <button class="dropbtn">
-                Please select preferred cost range
+                Please select preferred max cost per hour
               </button>
               <div class="dropdown-content">
-                <a href="#">$1 - $2.50</a>
-                <a href="#">$2.50 - $3.50</a>
-                <a href="#">$3.50 - $4.50</a>
-                <a href="#">$4.50 & above</a>
+                <a href="#">$2</a>
+                <a href="#">$3</a>
+                <a href="#">$4</a>
+                <a href="#">$5 & above</a>
               </div>
             </div>
           </div>
