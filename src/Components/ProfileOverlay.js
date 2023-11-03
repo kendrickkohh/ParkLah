@@ -30,13 +30,13 @@ const Profile = ({ selected, setSelected, setShowPage }) => {
             <h3>Cost</h3>
             <div class="dropdown">
               <button class="dropbtn">
-                Please select preferred max cost per hour
+                Please select preferred max cost per half hour
               </button>
               <div class="dropdown-content">
-                <a href="#">$2</a>
-                <a href="#">$3</a>
-                <a href="#">$4</a>
-                <a href="#">$5 & above</a>
+                <a href="#">$1.00</a>
+                <a href="#">$1.50</a>
+                <a href="#">$2.00</a>
+                <a href="#">$2.50 & above</a>
               </div>
             </div>
           </div>
