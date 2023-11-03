@@ -31,6 +31,9 @@ export default function Map({ car_park_details, car_park_availability }) {
   const [carparksFilteredPrice, setCarparksFilteredPrice] = useState<
     Array<String>
   >([]);
+  const [carparksFilteredID, setCarparksFilteredID] = useState<Array<String>>(
+    []
+  );
   const [mapsPopup, setMapsPopup] = useState(false);
   const mapRef = useRef<GoogleMap>();
 
@@ -89,6 +92,7 @@ export default function Map({ car_park_details, car_park_availability }) {
     let filteredCarparks: Array<LatLngLiteral> = [];
     let filteredCarparkNames: Array<String> = [];
     let filteredCarparkPrice: Array<String> = [];
+    let filteredCarparkID: Array<String> = [];
 
     const svy21Converter = new SVY21();
     carpark.Result.map((item) => {
@@ -115,11 +119,18 @@ export default function Map({ car_park_details, car_park_availability }) {
             filteredCarparks.push(coordinate);
             filteredCarparkNames.push(ppName);
             filteredCarparkPrice.push(weekdayRate + "/" + weekdayMin);
+            filteredCarparkID.push(ppCode);
           }
         }
       }
     });
-    return { filteredCarparks, filteredCarparkNames, filteredCarparkPrice };
+
+    return {
+      filteredCarparks,
+      filteredCarparkNames,
+      filteredCarparkPrice,
+      filteredCarparkID,
+    };
   };
 
   var SVY21 = function () {
@@ -329,12 +340,15 @@ export default function Map({ car_park_details, car_park_availability }) {
               filteredCarparks,
               filteredCarparkNames,
               filteredCarparkPrice,
+              filteredCarparkID,
             } = handleSearch(car_park_details, position);
             setCarparksFiltered(filteredCarparks);
             setCarparksFilteredNames(filteredCarparkNames);
             setCarparksFilteredPrice(filteredCarparkPrice);
+            setCarparksFilteredID(filteredCarparkID);
             setDestination(position);
             setMapsPopup(true);
+
             mapRef.current?.panTo(position);
           }}
         />
@@ -385,6 +399,7 @@ export default function Map({ car_park_details, car_park_availability }) {
             carparksFiltered={carparksFiltered}
             carparksFilteredNames={carparksFilteredNames}
             carparksFilteredPrice={carparksFilteredPrice}
+            carparksFilteredID={carparksFilteredID}
             setMapsPopup={setMapsPopup}
           />
         )}

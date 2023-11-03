@@ -5,9 +5,10 @@ const mapsPopup = ({
   carparksFiltered,
   carparksFilteredNames,
   carparksFilteredPrice,
+  carparksFilteredID,
   setMapsPopup,
 }) => {
-  console.log(carparksFilteredNames);
+  console.log(carparksFilteredID);
   return (
     <div className="mapsPopup">
       <div className="mapsPopup-list">
