@@ -1,6 +1,15 @@
 import React from "react";
 import Navbar from "./Navbar/Navbar";
 
+// import * as React from 'react';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+
+
+
 const Profile = ({
   selected,
   setSelected,
@@ -8,6 +17,17 @@ const Profile = ({
   setMapsDistance,
   setMapsPrice,
 }) => {
+  const [cost, setCost] = React.useState('');
+
+  const handleChangeC = (event) => {
+    setCost(event.target.value);
+  };
+  const [distance, setDistance] = React.useState('');
+
+  const handleChangeD = (event) => {
+      setDistance(event.target.value);
+  };
+
   return (
     <div className="saved-overlay-page">
       <div className="page-header">
@@ -19,7 +39,7 @@ const Profile = ({
           <div className="saved-list-item-a">
             <h3>Distance</h3>
             <div className="dropdown">
-              <button className="dropbtn">
+              {/* <button className="dropbtn">
                 Please select preferred max distance
               </button>
               <div className="dropdown-content">
@@ -32,7 +52,25 @@ const Profile = ({
                 <a href="#" onClick={setMapsDistance(600)}>
                   600m
                 </a>
-              </div>
+              </div> */}
+                         <Box sx={{ minWidth: 320 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Select Distance</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={distance}
+                  label="distance"
+                  onChange={handleChangeD}
+                >
+                  <MenuItem value={1.0}>$1.00/30mins</MenuItem>
+                  <MenuItem value={1.5}>$1.50/30mins</MenuItem>
+                  <MenuItem value={2.0}>$2.00/30mins</MenuItem>
+                  <MenuItem value={2.5}>$2.50/30mins & above</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <h3></h3>
             </div>
           </div>
         </div>
@@ -41,21 +79,24 @@ const Profile = ({
           <div className="saved-list-item-a">
             <h3>Cost</h3>
             <div className="dropdown">
-              <button className="dropbtn">
-                Please select preferred max cost per half hour
-              </button>
-              <div className="dropdown-content">
-                <a href="#" onClick={setMapsPrice(1.0)}>
-                  $1.00/30mins
-                </a>
-                <a href="#" onClick={setMapsPrice(1.5)}>
-                  $1.50/30mins
-                </a>
-                <a href="#"> onClick={setMapsPrice(2.0)}$2.00/30mins</a>
-                <a href="#" onClick={setMapsPrice(2.5)}>
-                  $2.50/30mins & above
-                </a>
-              </div>
+            <Box sx={{ minWidth: 320 }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Select Cost</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={cost}
+                  label="Cost"
+                  onChange={handleChangeC}
+                >
+                  <MenuItem value={1.0}>$1.00/30mins</MenuItem>
+                  <MenuItem value={1.5}>$1.50/30mins</MenuItem>
+                  <MenuItem value={2.0}>$2.00/30mins</MenuItem>
+                  <MenuItem value={2.5}>$2.50/30mins & above</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+            <h3></h3>
             </div>
           </div>
         </div>
@@ -81,4 +122,4 @@ const Profile = ({
   );
 };
 
-export default Profile;
+export default Profile
