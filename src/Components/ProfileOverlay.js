@@ -39,21 +39,7 @@ const Profile = ({
           <div className="saved-list-item-a">
             <h3>Distance</h3>
             <div className="dropdown">
-              {/* <button className="dropbtn">
-                Please select preferred max distance
-              </button>
-              <div className="dropdown-content">
-                <a href="#" onClick={setMapsDistance(200)}>
-                  200m
-                </a>
-                <a href="#" onClick={setMapsDistance(400)}>
-                  400m
-                </a>
-                <a href="#" onClick={setMapsDistance(600)}>
-                  600m
-                </a>
-              </div> */}
-                         <Box sx={{ minWidth: 320 }}>
+              <Box sx={{ }}>
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Select Distance</InputLabel>
                 <Select
@@ -63,10 +49,9 @@ const Profile = ({
                   label="distance"
                   onChange={handleChangeD}
                 >
-                  <MenuItem value={1.0}>$1.00/30mins</MenuItem>
-                  <MenuItem value={1.5}>$1.50/30mins</MenuItem>
-                  <MenuItem value={2.0}>$2.00/30mins</MenuItem>
-                  <MenuItem value={2.5}>$2.50/30mins & above</MenuItem>
+                  <MenuItem value={200}>200m</MenuItem>
+                  <MenuItem value={400}>400m</MenuItem>
+                  <MenuItem value={600}>600m</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -79,7 +64,7 @@ const Profile = ({
           <div className="saved-list-item-a">
             <h3>Cost</h3>
             <div className="dropdown">
-            <Box sx={{ minWidth: 320 }}>
+            <Box sx={{  }}>
               <FormControl fullWidth>
                 <InputLabel id="demo-simple-select-label">Select Cost</InputLabel>
                 <Select
