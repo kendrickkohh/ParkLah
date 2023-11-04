@@ -11,6 +11,8 @@ import ProfileOverlay from "./Components/ProfileOverlay";
 function App() {
   const [showPage, setShowPage] = useState(0);
   const [selected, setSelected] = useState(0);
+  const [mapsDistance, setMapsDistance] = useState(400);
+  const [mapsPrice, setMapsPrice] = useState(1.5);
 
   return (
     <div className="indexPage">
@@ -24,6 +26,8 @@ function App() {
             selected={selected}
             setSelected={setSelected}
             setShowPage={setShowPage}
+            mapsDistance={mapsDistance}
+            mapsPrice={mapsPrice}
           />
         )}
         {showPage === 3 && (
@@ -45,6 +49,8 @@ function App() {
             selected={selected}
             setSelected={setSelected}
             setShowPage={setShowPage}
+            setMapsDistance={setMapsDistance}
+            setMapsPrice={setMapsPrice}
           />
         )}
       </div>

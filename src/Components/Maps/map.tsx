@@ -18,7 +18,12 @@ type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectionsResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
 
-export default function Map({ car_park_details, car_park_availability }) {
+export default function Map({
+  car_park_details,
+  car_park_availability,
+  mapsDistance,
+  mapsPrice,
+}) {
   const [userLocation, setUserLocation] = useState<LatLngLiteral>();
   const [destination, setDestination] = useState<LatLngLiteral>();
   const [directions, setDirections] = useState<DirectionsResult>();
@@ -31,9 +36,9 @@ export default function Map({ car_park_details, car_park_availability }) {
   const [carparksFilteredPrice, setCarparksFilteredPrice] = useState<
     Array<String>
   >([]);
-  const [carparksFilteredID, setCarparksFilteredID] = useState<Array<String>>(
-    []
-  );
+  const [carparksAvailableLots, setCarparksAvailableLots] = useState<
+    Array<String>
+  >([]);
   const [mapsPopup, setMapsPopup] = useState(false);
   const mapRef = useRef<GoogleMap>();
 
@@ -88,12 +93,11 @@ export default function Map({ car_park_details, car_park_availability }) {
   //   return [latitude, longitude];
   // };
 
-  const handleSearch = (carpark, position) => {
+  const handleSearch = (carpark, position, mapsDistance, mapsPrice) => {
     let filteredCarparks: Array<LatLngLiteral> = [];
     let filteredCarparkNames: Array<String> = [];
     let filteredCarparkPrice: Array<String> = [];
-    let filteredCarparkID: Array<String> = [];
-
+    let filteredAvailableLots: Array<String> = [];
     const svy21Converter = new SVY21();
     carpark.Result.map((item) => {
       const { weekdayMin, weekdayRate, ppName, ppCode, geometries } = item;
@@ -103,11 +107,15 @@ export default function Map({ car_park_details, car_park_availability }) {
           coordinates[1],
           coordinates[0]
         );
+
         const distance = Math.sqrt(
           Math.pow(lat - position.lat, 2) + Math.pow(lon - position.lng, 2)
         );
         // Check if the distance is less than or equal to 0.006 (approx. 600m in a simplified context)
-        if (distance <= 0.0054) {
+        if (
+          distance <= mapsDistance / 100000 - 0.0006 &&
+          parseFloat(weekdayRate.replace("$", "")) <= mapsPrice
+        ) {
           const coordinate = { lat, lng: lon };
 
           // Check if the coordinate is not already in the filteredCarparks array
@@ -119,7 +127,8 @@ export default function Map({ car_park_details, car_park_availability }) {
             filteredCarparks.push(coordinate);
             filteredCarparkNames.push(ppName);
             filteredCarparkPrice.push(weekdayRate + "/" + weekdayMin);
-            filteredCarparkID.push(ppCode);
+            const availableLots = getAvailableLots(ppCode);
+            filteredAvailableLots.push(availableLots);
           }
         }
       }
@@ -129,8 +138,17 @@ export default function Map({ car_park_details, car_park_availability }) {
       filteredCarparks,
       filteredCarparkNames,
       filteredCarparkPrice,
-      filteredCarparkID,
+      filteredAvailableLots,
     };
+  };
+
+  const getAvailableLots = (ppCode) => {
+    for (const item of car_park_availability.Result) {
+      if (item.carparkNo === ppCode) {
+        return item.lotsAvailable;
+      }
+    }
+    return null;
   };
 
   var SVY21 = function () {
@@ -340,12 +358,17 @@ export default function Map({ car_park_details, car_park_availability }) {
               filteredCarparks,
               filteredCarparkNames,
               filteredCarparkPrice,
-              filteredCarparkID,
-            } = handleSearch(car_park_details, position);
+              filteredAvailableLots,
+            } = handleSearch(
+              car_park_details,
+              position,
+              mapsDistance,
+              mapsPrice
+            );
             setCarparksFiltered(filteredCarparks);
             setCarparksFilteredNames(filteredCarparkNames);
             setCarparksFilteredPrice(filteredCarparkPrice);
-            setCarparksFilteredID(filteredCarparkID);
+            setCarparksAvailableLots(filteredAvailableLots);
             setDestination(position);
             setMapsPopup(true);
 
@@ -389,9 +412,23 @@ export default function Map({ car_park_details, car_park_availability }) {
                 />
               );
             })}
-            <Circle center={destination} radius={200} options={closeOptions} />
-            <Circle center={destination} radius={400} options={middleOptions} />
-            <Circle center={destination} radius={600} options={farOptions} />
+            {mapsDistance >= 200 && (
+              <Circle
+                center={destination}
+                radius={200}
+                options={closeOptions}
+              />
+            )}
+            {mapsDistance >= 400 && (
+              <Circle
+                center={destination}
+                radius={400}
+                options={middleOptions}
+              />
+            )}
+            {mapsDistance >= 600 && (
+              <Circle center={destination} radius={600} options={farOptions} />
+            )}
           </>
         )}
         {mapsPopup && (
@@ -399,7 +436,7 @@ export default function Map({ car_park_details, car_park_availability }) {
             carparksFiltered={carparksFiltered}
             carparksFilteredNames={carparksFilteredNames}
             carparksFilteredPrice={carparksFilteredPrice}
-            carparksFilteredID={carparksFilteredID}
+            carparksAvailableLots={carparksAvailableLots}
             setMapsPopup={setMapsPopup}
           />
         )}

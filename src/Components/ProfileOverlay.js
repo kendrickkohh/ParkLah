@@ -1,7 +1,13 @@
 import React from "react";
 import Navbar from "./Navbar/Navbar";
 
-const Profile = ({ selected, setSelected, setShowPage }) => {
+const Profile = ({
+  selected,
+  setSelected,
+  setShowPage,
+  setMapsDistance,
+  setMapsPrice,
+}) => {
   return (
     <div className="saved-overlay-page">
       <div className="page-header">
@@ -12,14 +18,20 @@ const Profile = ({ selected, setSelected, setShowPage }) => {
         <div className="profilePreferences">
           <div className="saved-list-item-a">
             <h3>Distance</h3>
-            <div class="dropdown">
-              <button class="dropbtn">
-                Please select preferred max distance 
+            <div className="dropdown">
+              <button className="dropbtn">
+                Please select preferred max distance
               </button>
-              <div class="dropdown-content">
-                <a href="#">200m</a>
-                <a href="#">400m</a>
-                <a href="#">600m</a>
+              <div className="dropdown-content">
+                <a href="#" onClick={setMapsDistance(200)}>
+                  200m
+                </a>
+                <a href="#" onClick={setMapsDistance(400)}>
+                  400m
+                </a>
+                <a href="#" onClick={setMapsDistance(600)}>
+                  600m
+                </a>
               </div>
             </div>
           </div>
@@ -28,15 +40,21 @@ const Profile = ({ selected, setSelected, setShowPage }) => {
         <div className="profilePreferences">
           <div className="saved-list-item-a">
             <h3>Cost</h3>
-            <div class="dropdown">
-              <button class="dropbtn">
+            <div className="dropdown">
+              <button className="dropbtn">
                 Please select preferred max cost per half hour
               </button>
-              <div class="dropdown-content">
-                <a href="#">$1.00</a>
-                <a href="#">$1.50</a>
-                <a href="#">$2.00</a>
-                <a href="#">$2.50 & above</a>
+              <div className="dropdown-content">
+                <a href="#" onClick={setMapsPrice(1.0)}>
+                  $1.00/30mins
+                </a>
+                <a href="#" onClick={setMapsPrice(1.5)}>
+                  $1.50/30mins
+                </a>
+                <a href="#"> onClick={setMapsPrice(2.0)}$2.00/30mins</a>
+                <a href="#" onClick={setMapsPrice(2.5)}>
+                  $2.50/30mins & above
+                </a>
               </div>
             </div>
           </div>
@@ -45,9 +63,9 @@ const Profile = ({ selected, setSelected, setShowPage }) => {
         <div className="profilePreferences">
           <div className="saved-list-item-a">
             <h3>Distance vs Cost</h3>
-            <div class="preferenceButtonContainer">
-              <button class="preferenceLeftButton"></button>
-              <button class="preferenceRightButton"></button>
+            <div className="preferenceButtonContainer">
+              <button className="preferenceLeftButton"></button>
+              <button className="preferenceRightButton"></button>
             </div>
           </div>
         </div>

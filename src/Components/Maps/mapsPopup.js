@@ -5,10 +5,9 @@ const mapsPopup = ({
   carparksFiltered,
   carparksFilteredNames,
   carparksFilteredPrice,
-  carparksFilteredID,
+  carparksAvailableLots,
   setMapsPopup,
 }) => {
-  console.log(carparksFilteredID);
   return (
     <div className="mapsPopup">
       <div className="mapsPopup-list">
@@ -18,7 +17,7 @@ const mapsPopup = ({
               <div className="mapsPopup-list-item-a">
                 <h3>{carparksFilteredNames[index]}</h3>
                 <p>Price: {carparksFilteredPrice[index]}</p>
-                <p>Availability: {item.price}</p>
+                <p>Available lots: {carparksAvailableLots[index]}</p>
               </div>
               <div className="mapsPopup-list-item-b">
                 <ArrowForwardIcon
