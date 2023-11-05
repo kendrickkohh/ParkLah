@@ -246,7 +246,6 @@ h4 {
   font-size: 1.5em;
   margin-top: 3%;
 }
-
 /* saved-overlay */
 
 /* saved-list */
@@ -284,6 +283,11 @@ h4 {
 /* saved-list */
 
 /* search-main */
+.search-main {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
 .search-main h2 {
   font-weight: bold;
   margin: 0.5em;
@@ -313,7 +317,7 @@ h4 {
 }
 
 .search-endBtn {
-  margin-top: 1em;
+  margin: 1em 0;
   width: 70%;
   height: 35px;
   border-radius: 10px;
@@ -324,26 +328,24 @@ h4 {
 }
 
 .add-imageBtn {
-  margin-top: 3em;
-  margin-bottom: 2em;
+  margin: 2em 0;
   background-color: transparent;
   align-items: center;
 }
 
-.search-main h4 {
-  color: rgb(61, 61, 61);
-  text-align: left;
-  margin-left: 4em;
-  margin-bottom: 0em;
-  font-weight: 600;
-  margin-top: 0.5em;
+.searchSaved {
+  margin: 1em 0;
 }
 
-.searchSaved{
-  margin-top: 1em;
+.search-main-input {
+  margin: auto;
+  width: 75%;
 }
-.text-field {
-  margin-top: 0em;
+
+.search-main-input h4 {
+  color: rgb(61, 61, 61);
+  text-align: left;
+  font-weight: 600;
 }
 /* search-main */
 
@@ -440,7 +442,7 @@ h4 {
 .preferenceLeftButton {
   /* background-image: url("/public/images/distance.svg"); */
   margin-left: 3em;
-  margin-right:1em;
+  margin-right: 1em;
 }
 
 .preferenceRightButton {
