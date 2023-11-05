@@ -2,7 +2,13 @@ import React from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
-const SavedPopup = ({ setShowPage, setSelected }) => {
+const SavedPopup = ({
+  setShowPage,
+  setSelected,
+  parkingSavedData,
+  setParkingSavedData,
+  tempSavedCarpark,
+}) => {
   return (
     <div className="savedPopup">
       <div className="savedPopupMain">
@@ -22,6 +28,7 @@ const SavedPopup = ({ setShowPage, setSelected }) => {
             onClick={() => {
               setShowPage(3);
               setSelected(3);
+              setParkingSavedData([...parkingSavedData, tempSavedCarpark]);
             }}
           >
             Save carpark details

@@ -14,26 +14,14 @@ function App() {
   const [mapsDistance, setMapsDistance] = useState(600);
   const [mapsPrice, setMapsPrice] = useState(1.5);
   const [preferences, setPreferences] = useState("");
-  const [parkingSavedData, setParkingSavedData] = useState({
-    name: "",
-    price: "",
-    coordinate: {
-      lat: 0,
-      lng: 0,
-    },
-  });
 
-  const appendSavedCarparks = (carparkList, item) => {
-    carparkList.push(item);
-  };
-
-  const savedCarparks = [
+  const [parkingSavedData, setParkingSavedData] = useState([
     {
-      name: "ION Orchard Carpark",
+      name: "Far East Plaza Carpark",
       price: "$1.80/h",
       coordinate: {
-        lat: 1.3039288,
-        lng: 103.7598514,
+        lat: 1.3071,
+        lng: 103.83359,
       },
       index: 0,
     },
@@ -41,17 +29,17 @@ function App() {
       name: "Wisma Atria Carpark",
       price: "$2.80/h",
       coordinate: {
-        lat: 1.3039288,
-        lng: 103.7598514,
+        lat: 1.3437459,
+        lng: 103.8240449,
       },
       index: 1,
     },
     {
-      name: "Ngee Ann City Carpark",
+      name: "BLK 202/203 ANG MO KIO STREET 22 Carpark",
       price: "$3.80/h",
       coordinate: {
-        lat: 1.3039288,
-        lng: 103.7598514,
+        lat: 1.3680743699753581,
+        lng: 103.84439219780583,
       },
       index: 2,
     },
@@ -59,21 +47,21 @@ function App() {
       name: "Wheelock Place Carpark",
       price: "$4.80/h",
       coordinate: {
-        lat: 1.3039288,
-        lng: 103.7598514,
+        lat: 1.3048,
+        lng: 103.83063,
       },
       index: 3,
     },
     {
-      name: "NTU Carpark A",
+      name: "BLK 416A CLEMENTI AVE 1 Carpark",
       price: "$5.80/h",
       coordinate: {
-        lat: 1.3039288,
-        lng: 103.7598514,
+        lat: 1.3098135876321173,
+        lng: 103.77013103455903,
       },
       index: 4,
     },
-  ];
+  ]);
 
   return (
     <div className="indexPage">
@@ -91,6 +79,7 @@ function App() {
             mapsPrice={mapsPrice}
             preferences={preferences}
             setParkingSavedData={setParkingSavedData}
+            parkingSavedData={parkingSavedData}
           />
         )}
         {showPage === 3 && (
@@ -99,8 +88,6 @@ function App() {
             setSelected={setSelected}
             setShowPage={setShowPage}
             parkingSavedData={parkingSavedData}
-            appendSavedCarparks={appendSavedCarparks}
-            savedCarparks={savedCarparks}
           />
         )}
         {showPage === 4 && (

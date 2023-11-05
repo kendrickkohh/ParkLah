@@ -28,8 +28,6 @@ const Profile = ({
     setMapsDistance(event.target.value);
   };
 
-
-
   return (
     <div className="saved-overlay-page">
       <div className="page-header">
@@ -103,7 +101,14 @@ const Profile = ({
                   setPreferences("Distance");
                 }}
               >
-                <img src={isDistanceImage == 1 ? "/images/distanceClick.svg" : "/images/distance.svg"} alt="Distance" />
+                <img
+                  src={
+                    isDistanceImage == 1
+                      ? "/images/distanceClick.svg"
+                      : "/images/distance.svg"
+                  }
+                  alt="Distance"
+                />
                 Distance
               </button>
               <button
@@ -113,7 +118,14 @@ const Profile = ({
                   setPreferences("Price");
                 }}
               >
-                <img src={isDistanceImage == 2 ? "/images/costClick.svg" : "/images/cost.svg"} alt="Price" />
+                <img
+                  src={
+                    isDistanceImage == 2
+                      ? "/images/costClick.svg"
+                      : "/images/cost.svg"
+                  }
+                  alt="Price"
+                />
                 Price
               </button>
             </div>

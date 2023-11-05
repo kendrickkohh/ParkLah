@@ -7,7 +7,7 @@ const mapsPopup = ({
   carparksFilteredPrice,
   carparksAvailableLots,
   setMapsPopup,
-  setParkingSavedData,
+  setTempSavedCarpark,
 }) => {
   return (
     <div className="mapsPopup">
@@ -32,14 +32,16 @@ const mapsPopup = ({
                       item.lng +
                       "&travelmode=driving";
                     window.open(url, "_blank");
-                    setParkingSavedData({
+                    const updateParkingData = {
                       name: carparksFilteredNames[index],
                       price: carparksFilteredPrice[index],
                       coordinate: {
                         lat: item.lat,
                         lng: item.lng,
                       },
-                    });
+                      index: index,
+                    };
+                    setTempSavedCarpark(updateParkingData);
                     setMapsPopup(2);
                   }}
                 />

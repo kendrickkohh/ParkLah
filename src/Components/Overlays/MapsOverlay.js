@@ -13,6 +13,7 @@ const MapsOverlay = ({
   mapsPrice,
   preferences,
   setParkingSavedData,
+  parkingSavedData,
 }) => {
   // load GoogleMaps API
   const { isLoaded } = useJsApiLoader({
@@ -36,6 +37,7 @@ const MapsOverlay = ({
           setShowPage={setShowPage}
           setSelected={setSelected}
           setParkingSavedData={setParkingSavedData}
+          parkingSavedData={parkingSavedData}
         ></Map>
       </div>
       <Navbar

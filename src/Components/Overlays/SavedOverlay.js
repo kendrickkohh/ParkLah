@@ -2,16 +2,16 @@ import React from "react";
 import Navbar from "../Navbar/Navbar";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
-const Saved = ({ selected, setSelected, setShowPage, savedCarparks }) => {
+const Saved = ({ selected, setSelected, setShowPage, parkingSavedData }) => {
   return (
     <div className="saved-overlay-page">
       <div className="page-header">
         <h3>Saved</h3>
       </div>
       <div className="saved-list">
-        {savedCarparks.map((item, index) => {
+        {parkingSavedData.map((item) => {
           return (
-            <div className="saved-list-item" key={index}>
+            <div className="saved-list-item" key={item.index}>
               <div className="saved-list-item-a">
                 <h3>{item.name}</h3>
                 <p>Price: {item.price}</p>

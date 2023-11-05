@@ -5,9 +5,6 @@ import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import Stack from '@mui/material/Stack';
-
-
 
 const Finder = ({ selected, setSelected, setShowPage }) => {
   const VisuallyHiddenInput = styled("input")({
@@ -78,8 +75,8 @@ const Finder = ({ selected, setSelected, setShowPage }) => {
           </Box>
         </div>
         <div className="searchSaved">
-        <Button variant="outlined"> Save Parked Details </Button>
-      </div>
+          <Button variant="outlined"> Save Parked Details </Button>
+        </div>
       </div>
 
       {/*  <div className="saved-overlay-page">
