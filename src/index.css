@@ -426,64 +426,14 @@ h4 {
   background-image: url("/public/images/cost.svg");
 }
 
-/* Styles for the dropdown button */
-.dropbtn {
-  background-color: #b2cbde;
-  color: #666363;
-  padding: 5px;
-  font-size: 12px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  margin-bottom: 2em;
-  margin-left: 1em;
-  width: 300px;
-  height: 30px;
-  border-radius: 15px;
-  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.6);
-}
-
 /* Container for positioning */
 .dropdown {
   position: relative;
   display: inline-block;
+  width: 120%;
 }
 
-/* Dropdown content */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  border: solid #666363 1px;
-  border-radius: 5px;
-  min-width: 160px;
-  box-shadow: 0px 8px 25px 0px rgba(0, 0, 0, 0.2);
-  margin-left: 1.7em;
-  margin-top: -1.4em;
-  z-index: 1;
-  width: 275px;
-  top: 100%; /* Position the dropdown options below the button */
-}
 
-/* Show the dropdown content on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* Styles for the dropdown options */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  border-bottom: 1px solid #666363;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
 
 .profile-main h3 {
   font-weight: 600;
