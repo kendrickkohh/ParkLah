@@ -13,6 +13,7 @@ function App() {
   const [selected, setSelected] = useState(0);
   const [mapsDistance, setMapsDistance] = useState(600);
   const [mapsPrice, setMapsPrice] = useState(1.5);
+  const [preferences, setPreferences] = useState("");
 
   return (
     <div className="indexPage">
@@ -28,6 +29,7 @@ function App() {
             setShowPage={setShowPage}
             mapsDistance={mapsDistance}
             mapsPrice={mapsPrice}
+            preferences={preferences}
           />
         )}
         {showPage === 3 && (
@@ -51,6 +53,7 @@ function App() {
             setShowPage={setShowPage}
             setMapsDistance={setMapsDistance}
             setMapsPrice={setMapsPrice}
+            setPreferences={setPreferences}
           />
         )}
       </div>

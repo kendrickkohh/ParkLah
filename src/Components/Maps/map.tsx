@@ -23,6 +23,7 @@ export default function Map({
   car_park_availability,
   mapsDistance,
   mapsPrice,
+  preferences,
 }) {
   const [userLocation, setUserLocation] = useState<LatLngLiteral>();
   const [destination, setDestination] = useState<LatLngLiteral>();
@@ -41,6 +42,7 @@ export default function Map({
   >([]);
   const [mapsPopup, setMapsPopup] = useState(false);
   const mapRef = useRef<GoogleMap>();
+  console.log();
 
   // Remove default UI
   const options = useMemo<MapOptions>(
@@ -92,6 +94,8 @@ export default function Map({
     let filteredCarparkNames: Array<String> = [];
     let filteredCarparkPrice: Array<String> = [];
     let filteredAvailableLots: Array<String> = [];
+    let distances: Array<Number> = [];
+    let prices: Array<Number> = [];
     const svy21Converter = new SVY21();
     carpark.Result.map((item) => {
       const { weekdayRate, ppName, ppCode, geometries } = item;
@@ -111,6 +115,7 @@ export default function Map({
           parseFloat(weekdayRate.replace("$", "")) <= mapsPrice
         ) {
           const coordinate = { lat, lng: lon };
+          const weekdayRateInt = parseFloat(weekdayRate.replace("$", ""));
 
           // Check if the coordinate is not already in the filteredCarparks array
           if (
@@ -123,17 +128,37 @@ export default function Map({
             filteredCarparkPrice.push(weekdayRate + "/30 mins");
             const availableLots = getAvailableLots(ppCode);
             filteredAvailableLots.push(availableLots);
+            distances.push(distance);
+            prices.push(weekdayRateInt);
           }
         }
       }
     });
 
-    return {
-      filteredCarparks,
-      filteredCarparkNames,
-      filteredCarparkPrice,
-      filteredAvailableLots,
-    };
+    if (preferences === "Distance") {
+      return insertionSortByDistance(
+        distances,
+        filteredCarparks,
+        filteredCarparkNames,
+        filteredCarparkPrice,
+        filteredAvailableLots
+      );
+    } else if (preferences === "Price") {
+      return insertionSortByPrice(
+        prices,
+        filteredCarparks,
+        filteredCarparkNames,
+        filteredCarparkPrice,
+        filteredAvailableLots
+      );
+    } else {
+      return {
+        filteredCarparks,
+        filteredCarparkNames,
+        filteredCarparkPrice,
+        filteredAvailableLots,
+      };
+    }
   };
 
   // Using ppCode to retrieve carparks of filtered carparks
@@ -342,6 +367,90 @@ export default function Map({
         (this.oLon * Math.PI) / 180 + lonTerm1 - lonTerm2 + lonTerm3 - lonTerm4;
 
       return { lat: lat / (Math.PI / 180), lon: lon / (Math.PI / 180) };
+    };
+  };
+
+  const insertionSortByDistance = (
+    array,
+    filteredCarparks,
+    filteredCarparkNames,
+    filteredCarparkPrice,
+    filteredAvailableLots
+  ) => {
+    const arr = [...array];
+    const n = arr.length;
+
+    for (let i = 1; i < n; i++) {
+      let currentElement = arr[i];
+      let currentFilteredCarparks = filteredCarparks[i];
+      let currentFilteredCarparkNames = filteredCarparkNames[i];
+      let currentFilteredCarparkPrice = filteredCarparkPrice[i];
+      let currentFilteredAvailableLots = filteredAvailableLots[i];
+      let j = i - 1;
+
+      while (j >= 0 && arr[j] > currentElement) {
+        arr[j + 1] = arr[j];
+        filteredCarparks[j + 1] = filteredCarparks[j];
+        filteredCarparkNames[j + 1] = filteredCarparkNames[j];
+        filteredCarparkPrice[j + 1] = filteredCarparkPrice[j];
+        filteredAvailableLots[j + 1] = filteredAvailableLots[j];
+        j--;
+      }
+
+      arr[j + 1] = currentElement;
+      filteredCarparks[j + 1] = currentFilteredCarparks;
+      filteredCarparkNames[j + 1] = currentFilteredCarparkNames;
+      filteredCarparkPrice[j + 1] = currentFilteredCarparkPrice;
+      filteredAvailableLots[j + 1] = currentFilteredAvailableLots;
+    }
+
+    return {
+      filteredCarparks,
+      filteredCarparkNames,
+      filteredCarparkPrice,
+      filteredAvailableLots,
+    };
+  };
+
+  const insertionSortByPrice = (
+    array,
+    filteredCarparks,
+    filteredCarparkNames,
+    filteredCarparkPrice,
+    filteredAvailableLots
+  ) => {
+    const arr = [...array];
+    const n = arr.length;
+
+    for (let i = 1; i < n; i++) {
+      let currentElement = arr[i];
+      let currentFilteredCarparks = filteredCarparks[i];
+      let currentFilteredCarparkNames = filteredCarparkNames[i];
+      let currentFilteredCarparkPrice = filteredCarparkPrice[i];
+      let currentFilteredAvailableLots = filteredAvailableLots[i];
+      let j = i - 1;
+
+      while (j >= 0 && arr[j] > currentElement) {
+        arr[j + 1] = arr[j];
+        filteredCarparks[j + 1] = filteredCarparks[j];
+        filteredCarparkNames[j + 1] = filteredCarparkNames[j];
+        filteredCarparkPrice[j + 1] = filteredCarparkPrice[j];
+        filteredAvailableLots[j + 1] = filteredAvailableLots[j];
+        j--;
+      }
+
+      arr[j + 1] = currentElement;
+      filteredCarparks[j + 1] = currentFilteredCarparks;
+      filteredCarparkNames[j + 1] = currentFilteredCarparkNames;
+      filteredCarparkPrice[j + 1] = currentFilteredCarparkPrice;
+      filteredAvailableLots[j + 1] = currentFilteredAvailableLots;
+    }
+
+    return {
+      filteredCarparks,
+      filteredCarparkNames,
+      filteredCarparkPrice,
+      filteredAvailableLots,
     };
   };
 

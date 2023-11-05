@@ -41,9 +41,9 @@ const Saved = ({ selected, setSelected, setShowPage }) => {
         <h3>Saved</h3>
       </div>
       <div className="saved-list">
-        {savedCarparks.map((item) => {
+        {savedCarparks.map((item, index) => {
           return (
-            <div className="saved-list-item">
+            <div className="saved-list-item" key={index}>
               <div className="saved-list-item-a">
                 <h3>{item.title}</h3>
                 <p>Final Destination: {item.finalDestination}</p>

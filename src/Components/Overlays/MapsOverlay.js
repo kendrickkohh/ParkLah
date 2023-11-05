@@ -11,6 +11,7 @@ const MapsOverlay = ({
   setShowPage,
   mapsDistance,
   mapsPrice,
+  preferences,
 }) => {
   // load GoogleMaps API
   const { isLoaded } = useJsApiLoader({
@@ -30,6 +31,7 @@ const MapsOverlay = ({
           car_park_details={car_park_details}
           mapsDistance={mapsDistance}
           mapsPrice={mapsPrice}
+          preferences={preferences}
         ></Map>
       </div>
       <Navbar

@@ -2,13 +2,11 @@ import React from "react";
 import Navbar from "../Navbar/Navbar";
 
 // import * as React from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-
-
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const Profile = ({
   selected,
@@ -16,16 +14,19 @@ const Profile = ({
   setShowPage,
   setMapsDistance,
   setMapsPrice,
+  setPreferences,
 }) => {
-  const [cost, setCost] = React.useState('');
+  const [cost, setCost] = React.useState("");
 
   const handleChangeC = (event) => {
     setCost(event.target.value);
+    setMapsPrice(event.target.value);
   };
-  const [distance, setDistance] = React.useState('');
+  const [distance, setDistance] = React.useState("");
 
   const handleChangeD = (event) => {
-      setDistance(event.target.value);
+    setDistance(event.target.value);
+    setMapsDistance(event.target.value);
   };
 
   return (
@@ -39,23 +40,25 @@ const Profile = ({
           <div className="saved-list-item-a">
             <h3>Distance</h3>
             <div className="dropdown">
-              <Box sx={{ }}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Select Distance</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={distance}
-                  label="distance"
-                  onChange={handleChangeD}
-                >
-                  <MenuItem value={200}>200m</MenuItem>
-                  <MenuItem value={400}>400m</MenuItem>
-                  <MenuItem value={600}>600m</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
-            <h3></h3>
+              <Box sx={{}}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">
+                    Select Distance
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={distance}
+                    label="distance"
+                    onChange={handleChangeD}
+                  >
+                    <MenuItem value={200}>200m</MenuItem>
+                    <MenuItem value={400}>400m</MenuItem>
+                    <MenuItem value={600}>600m</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+              <h3></h3>
             </div>
           </div>
         </div>
@@ -64,24 +67,26 @@ const Profile = ({
           <div className="saved-list-item-a">
             <h3>Cost</h3>
             <div className="dropdown">
-            <Box sx={{  }}>
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Select Cost</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={cost}
-                  label="Cost"
-                  onChange={handleChangeC}
-                >
-                  <MenuItem value={1.0}>$1.00/30mins</MenuItem>
-                  <MenuItem value={1.5}>$1.50/30mins</MenuItem>
-                  <MenuItem value={2.0}>$2.00/30mins</MenuItem>
-                  <MenuItem value={2.5}>$2.50/30mins & above</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
-            <h3></h3>
+              <Box sx={{}}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">
+                    Select Cost
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={cost}
+                    label="Cost"
+                    onChange={handleChangeC}
+                  >
+                    <MenuItem value={1.0}>$1.00/30mins</MenuItem>
+                    <MenuItem value={1.5}>$1.50/30mins</MenuItem>
+                    <MenuItem value={2.0}>$2.00/30mins</MenuItem>
+                    <MenuItem value={2.5}>$2.50/30mins & above</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+              <h3></h3>
             </div>
           </div>
         </div>
@@ -90,8 +95,14 @@ const Profile = ({
           <div className="saved-list-item-a">
             <h3>Distance vs Cost</h3>
             <div className="preferenceButtonContainer">
-              <button className="preferenceLeftButton"></button>
-              <button className="preferenceRightButton"></button>
+              <button
+                className="preferenceLeftButton"
+                onClick={setPreferences("Distance")}
+              ></button>
+              <button
+                className="preferenceRightButton"
+                onClick={setPreferences("Price")}
+              ></button>
             </div>
           </div>
         </div>
@@ -107,4 +118,4 @@ const Profile = ({
   );
 };
 
-export default Profile
+export default Profile;
