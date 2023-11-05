@@ -26,6 +26,7 @@ export default function Map({
   mapsPrice,
   preferences,
   setShowPage,
+  setSelected,
 }) {
   const [userLocation, setUserLocation] = useState<LatLngLiteral>();
   const [destination, setDestination] = useState<LatLngLiteral>();
@@ -547,7 +548,13 @@ export default function Map({
             setMapsPopup={setMapsPopup}
           />
         )}
-        {mapsPopup === 2 && <SavedPopup setShowPage={setShowPage} />}
+        {mapsPopup === 2 && (
+          <SavedPopup
+            setShowPage={setShowPage}
+            setMapsPopup={setMapsPopup}
+            setSelected={setSelected}
+          />
+        )}
       </GoogleMap>
     </div>
   );

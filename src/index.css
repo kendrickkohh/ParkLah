@@ -330,7 +330,7 @@ h4 {
   align-items: center;
 }
 
-.search-main h4{
+.search-main h4 {
   color: rgb(61, 61, 61);
   text-align: left;
   margin-left: 4em;
@@ -338,8 +338,7 @@ h4 {
   font-weight: 600;
 }
 
-.text-field
-{
+.text-field {
   margin-top: 0em;
 }
 /* search-main */
@@ -472,5 +471,6 @@ h4 {
 .savedPopup h3 {
   font-weight: bold;
   text-align: left;
+  margin-bottom: 0.7em;
 }
 /* SavedPopup */
