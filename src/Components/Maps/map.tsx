@@ -86,13 +86,7 @@ export default function Map({
     );
   };
 
-  // const returnLatLong = (locationString) => {
-  //   const coordinates = locationString.split(" ");
-  //   const latitude = coordinates[0];
-  //   const longitude = coordinates[1];
-  //   return [latitude, longitude];
-  // };
-
+  // Filtering of carparks based on preferences
   const handleSearch = (carpark, position, mapsDistance, mapsPrice) => {
     let filteredCarparks: Array<LatLngLiteral> = [];
     let filteredCarparkNames: Array<String> = [];
@@ -100,7 +94,7 @@ export default function Map({
     let filteredAvailableLots: Array<String> = [];
     const svy21Converter = new SVY21();
     carpark.Result.map((item) => {
-      const { weekdayMin, weekdayRate, ppName, ppCode, geometries } = item;
+      const { weekdayRate, ppName, ppCode, geometries } = item;
       if (geometries?.[0]?.coordinates) {
         const coordinates = geometries[0].coordinates.split(",");
         const { lat, lon } = svy21Converter.computeLatLon(
@@ -126,7 +120,7 @@ export default function Map({
           ) {
             filteredCarparks.push(coordinate);
             filteredCarparkNames.push(ppName);
-            filteredCarparkPrice.push(weekdayRate + "/" + weekdayMin);
+            filteredCarparkPrice.push(weekdayRate + "/30 mins");
             const availableLots = getAvailableLots(ppCode);
             filteredAvailableLots.push(availableLots);
           }
@@ -142,15 +136,17 @@ export default function Map({
     };
   };
 
+  // Using ppCode to retrieve carparks of filtered carparks
   const getAvailableLots = (ppCode) => {
     for (const item of car_park_availability.Result) {
       if (item.carparkNo === ppCode) {
         return item.lotsAvailable;
       }
     }
-    return null;
+    return "Unavailable";
   };
 
+  // Function to convert SVY21 to WGS84
   var SVY21 = function () {
     this.a = 6378137;
     this.f = 1 / 298.257223563;

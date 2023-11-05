@@ -1,18 +1,18 @@
 import { useState } from "react";
-import Home from "./Components/Home";
-import LocationService from "./Components/LocationService";
-import MapsOverlay from "./Components/MapsOverlay.js";
-import SavedOverlay from "./Components/SavedOverlay.js";
+import Home from "./Components/Overlays/Home.js";
+import LocationService from "./Components/Overlays/LocationService.js";
+import MapsOverlay from "./Components/Overlays/MapsOverlay.js";
+import SavedOverlay from "./Components/Overlays/SavedOverlay.js";
 import car_park_availability from "./Components/car_park_availability.json";
 import car_park_details from "./Components/car_park_details.json";
-import SearchOverlay from "./Components/SearchOverlay";
-import ProfileOverlay from "./Components/ProfileOverlay";
+import SearchOverlay from "./Components/Overlays/SearchOverlay.js";
+import ProfileOverlay from "./Components/Overlays/ProfileOverlay.js";
 
 function App() {
   const [showPage, setShowPage] = useState(0);
   const [selected, setSelected] = useState(0);
-  const [mapsDistance, setMapsDistance] = useState(400);
-  const [mapsPrice, setMapsPrice] = useState(1.5);
+  const [mapsDistance, setMapsDistance] = useState(600);
+  const [mapsPrice, setMapsPrice] = useState(5);
 
   return (
     <div className="indexPage">

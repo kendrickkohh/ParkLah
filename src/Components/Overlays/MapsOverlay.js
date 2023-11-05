@@ -1,7 +1,7 @@
 import React from "react";
-import Map from "./Maps/map.tsx";
+import Map from "../Maps/map.tsx";
 import { useJsApiLoader } from "@react-google-maps/api";
-import Navbar from "./Navbar/Navbar.js";
+import Navbar from "../Navbar/Navbar.js";
 
 const MapsOverlay = ({
   car_park_details,
