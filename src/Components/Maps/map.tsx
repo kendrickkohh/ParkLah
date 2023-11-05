@@ -13,6 +13,7 @@ import {
 } from "@react-google-maps/api";
 import Places from "./places.tsx";
 import MapsPopup from "./mapsPopup.js";
+import SavedPopup from "./SavedPopup.js";
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type DirectionsResult = google.maps.DirectionsResult;
@@ -24,6 +25,7 @@ export default function Map({
   mapsDistance,
   mapsPrice,
   preferences,
+  setShowPage,
 }) {
   const [userLocation, setUserLocation] = useState<LatLngLiteral>();
   const [destination, setDestination] = useState<LatLngLiteral>();
@@ -40,7 +42,7 @@ export default function Map({
   const [carparksAvailableLots, setCarparksAvailableLots] = useState<
     Array<String>
   >([]);
-  const [mapsPopup, setMapsPopup] = useState(false);
+  const [mapsPopup, setMapsPopup] = useState(0);
   const mapRef = useRef<GoogleMap>();
   console.log();
 
@@ -475,7 +477,7 @@ export default function Map({
             setCarparksFilteredPrice(filteredCarparkPrice);
             setCarparksAvailableLots(filteredAvailableLots);
             setDestination(position);
-            setMapsPopup(true);
+            setMapsPopup(1);
 
             mapRef.current?.panTo(position);
           }}
@@ -536,7 +538,7 @@ export default function Map({
             )}
           </>
         )}
-        {mapsPopup && (
+        {mapsPopup === 1 && (
           <MapsPopup
             carparksFiltered={carparksFiltered}
             carparksFilteredNames={carparksFilteredNames}
@@ -545,6 +547,7 @@ export default function Map({
             setMapsPopup={setMapsPopup}
           />
         )}
+        {mapsPopup === 2 && <SavedPopup setShowPage={setShowPage} />}
       </GoogleMap>
     </div>
   );

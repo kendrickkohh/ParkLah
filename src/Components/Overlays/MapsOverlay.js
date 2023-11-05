@@ -12,6 +12,7 @@ const MapsOverlay = ({
   mapsDistance,
   mapsPrice,
   preferences,
+  showPage,
 }) => {
   // load GoogleMaps API
   const { isLoaded } = useJsApiLoader({
@@ -32,6 +33,7 @@ const MapsOverlay = ({
           mapsDistance={mapsDistance}
           mapsPrice={mapsPrice}
           preferences={preferences}
+          setShowPage={setShowPage}
         ></Map>
       </div>
       <Navbar

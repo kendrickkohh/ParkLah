@@ -82,7 +82,7 @@ const Profile = ({
                     <MenuItem value={1.0}>$1.00/30mins</MenuItem>
                     <MenuItem value={1.5}>$1.50/30mins</MenuItem>
                     <MenuItem value={2.0}>$2.00/30mins</MenuItem>
-                    <MenuItem value={2.5}>$2.50/30mins & above</MenuItem>
+                    <MenuItem value={100}>$2.50/30mins & above</MenuItem>
                   </Select>
                 </FormControl>
               </Box>
@@ -106,7 +106,15 @@ const Profile = ({
             </div>
           </div>
         </div>
-        <button className="profileButton">Update Preferences</button>
+        <button
+          className="profileButton"
+          onClick={() => {
+            setShowPage(2);
+            alert("Preferences saved");
+          }}
+        >
+          Update Preferences
+        </button>
       </div>
 
       <Navbar

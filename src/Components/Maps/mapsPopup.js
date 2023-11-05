@@ -31,7 +31,7 @@ const mapsPopup = ({
                       item.lng +
                       "&travelmode=driving";
                     window.open(url, "_blank");
-                    setMapsPopup(false);
+                    setMapsPopup(2);
                   }}
                 />
               </div>
