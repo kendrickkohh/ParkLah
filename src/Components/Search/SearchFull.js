@@ -1,6 +1,13 @@
 import React from "react";
 
-const SearchFull = ({ setShowSearchPage, level, zone, lotNo, image }) => {
+const SearchFull = ({
+  setShowSearchPage,
+  level,
+  zone,
+  lotNo,
+  image,
+  setImage,
+}) => {
   return (
     <div className="search-main">
       <h2>Parked Location</h2>
@@ -16,6 +23,7 @@ const SearchFull = ({ setShowSearchPage, level, zone, lotNo, image }) => {
         className="search-endBtn"
         onClick={() => {
           setShowSearchPage(0);
+          setImage(null);
         }}
       >
         End Parking

@@ -8,6 +8,7 @@ const SavedPopup = ({
   parkingSavedData,
   setParkingSavedData,
   tempSavedCarpark,
+  setMapsPopup,
 }) => {
   return (
     <div className="savedPopup">
@@ -32,6 +33,16 @@ const SavedPopup = ({
             }}
           >
             Save carpark details
+          </Button>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              setShowPage(2);
+              setSelected(2);
+              setMapsPopup(0);
+            }}
+          >
+            Quit
           </Button>
         </Stack>
       </div>

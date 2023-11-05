@@ -565,6 +565,7 @@ export default function Map({
             parkingSavedData={parkingSavedData}
             setParkingSavedData={setParkingSavedData}
             tempSavedCarpark={tempSavedCarpark}
+            setMapsPopup={setMapsPopup}
           />
         )}
       </GoogleMap>

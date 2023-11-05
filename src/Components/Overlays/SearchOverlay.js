@@ -43,6 +43,7 @@ const Finder = ({ selected, setSelected, setShowPage }) => {
           zone={zone}
           lotNo={lotNo}
           image={image}
+          setImage={setImage}
         />
       )}
       <Navbar
