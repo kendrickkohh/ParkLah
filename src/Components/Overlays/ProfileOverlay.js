@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
-
-// import * as React from 'react';
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -17,17 +15,20 @@ const Profile = ({
   setPreferences,
 }) => {
   const [cost, setCost] = React.useState("");
+  const [distance, setDistance] = React.useState("");
+  const [isDistanceImage, setIsDistanceImage] = useState(0);
 
   const handleChangeC = (event) => {
     setCost(event.target.value);
     setMapsPrice(event.target.value);
   };
-  const [distance, setDistance] = React.useState("");
 
   const handleChangeD = (event) => {
     setDistance(event.target.value);
     setMapsDistance(event.target.value);
   };
+
+
 
   return (
     <div className="saved-overlay-page">
@@ -35,7 +36,7 @@ const Profile = ({
         <h3>Profile</h3>
       </div>
       <div className="profile-main">
-        <img src="/images/profileImage.svg" alt="profileImage" />
+        <img src={`/images/profileImage.svg`} alt="profileImage" />
         <div className="profilePreferences">
           <div className="saved-list-item-a">
             <h3>Distance</h3>
@@ -97,12 +98,24 @@ const Profile = ({
             <div className="preferenceButtonContainer">
               <button
                 className="preferenceLeftButton"
-                onClick={setPreferences("Distance")}
-              ></button>
+                onClick={() => {
+                  setIsDistanceImage(1);
+                  setPreferences("Distance");
+                }}
+              >
+                <img src={isDistanceImage == 1 ? "/images/distanceClick.svg" : "/images/distance.svg"} alt="Distance" />
+                Distance
+              </button>
               <button
                 className="preferenceRightButton"
-                onClick={setPreferences("Price")}
-              ></button>
+                onClick={() => {
+                  setIsDistanceImage(2);
+                  setPreferences("Price");
+                }}
+              >
+                <img src={isDistanceImage == 2 ? "/images/costClick.svg" : "/images/cost.svg"} alt="Price" />
+                Price
+              </button>
             </div>
           </div>
         </div>

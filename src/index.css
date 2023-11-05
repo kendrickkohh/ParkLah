@@ -424,23 +424,25 @@ h4 {
 
 .preferenceLeftButton,
 .preferenceRightButton {
-  height: 130px;
-  width: 150px;
+  height: 50%;
+  width: 50%;
   background-color: transparent;
   background-size: contain;
   background-repeat: no-repeat;
   color: transparent;
-  margin-left: 2em;
-  margin-bottom: -1em;
+  /* margin-left: 2em;
+  margin-bottom: -1em; */
 }
 
 .preferenceLeftButton {
-  background-image: url("/public/images/distance.svg");
+  /* background-image: url("/public/images/distance.svg"); */
   margin-left: 3em;
+  margin-right:1em;
 }
 
 .preferenceRightButton {
-  background-image: url("/public/images/cost.svg");
+  /* background-image: url("/public/images/cost.svg"); */
+  margin-left: 1em;
 }
 
 /* Container for positioning */
