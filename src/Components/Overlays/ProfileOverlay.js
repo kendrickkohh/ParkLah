@@ -97,11 +97,15 @@ const Profile = ({
             <div className="preferenceButtonContainer">
               <button
                 className="preferenceLeftButton"
-                onClick={setPreferences("Distance")}
+                onClick={() => {
+                  setPreferences("Distance");
+                }}
               ></button>
               <button
                 className="preferenceRightButton"
-                onClick={setPreferences("Price")}
+                onClick={() => {
+                  setPreferences("Price");
+                }}
               ></button>
             </div>
           </div>
