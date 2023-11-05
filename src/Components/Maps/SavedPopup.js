@@ -2,7 +2,7 @@ import React from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 
-const SavedPopup = ({ setShowPage, setMapsPopup, setSelected }) => {
+const SavedPopup = ({ setShowPage, setSelected }) => {
   return (
     <div className="savedPopup">
       <div className="savedPopupMain">
@@ -17,7 +17,13 @@ const SavedPopup = ({ setShowPage, setMapsPopup, setSelected }) => {
           >
             Enter parking details
           </Button>
-          <Button variant="outlined" onClick={() => setMapsPopup(0)}>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              setShowPage(3);
+              setSelected(3);
+            }}
+          >
             Save carpark details
           </Button>
         </Stack>
