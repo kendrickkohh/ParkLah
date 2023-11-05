@@ -26,6 +26,8 @@ export default function Map({
   mapsPrice,
   preferences,
   setShowPage,
+  setSelected,
+  setParkingSavedData,
 }) {
   const [userLocation, setUserLocation] = useState<LatLngLiteral>();
   const [destination, setDestination] = useState<LatLngLiteral>();
@@ -44,7 +46,6 @@ export default function Map({
   >([]);
   const [mapsPopup, setMapsPopup] = useState(0);
   const mapRef = useRef<GoogleMap>();
-  console.log();
 
   // Remove default UI
   const options = useMemo<MapOptions>(
@@ -545,9 +546,12 @@ export default function Map({
             carparksFilteredPrice={carparksFilteredPrice}
             carparksAvailableLots={carparksAvailableLots}
             setMapsPopup={setMapsPopup}
+            setParkingSavedData={setParkingSavedData}
           />
         )}
-        {mapsPopup === 2 && <SavedPopup setShowPage={setShowPage} />}
+        {mapsPopup === 2 && (
+          <SavedPopup setShowPage={setShowPage} setSelected={setSelected} />
+        )}
       </GoogleMap>
     </div>
   );

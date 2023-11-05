@@ -123,6 +123,7 @@ const Profile = ({
           className="profileButton"
           onClick={() => {
             setShowPage(2);
+            setSelected(2);
             alert("Preferences saved");
           }}
         >
