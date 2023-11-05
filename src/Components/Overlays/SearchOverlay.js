@@ -36,7 +36,6 @@ const Finder = ({ selected, setSelected, setShowPage }) => {
           image={image}
         />
       )}
-
       {showSearchPage === 1 && (
         <SearchFull
           setShowSearchPage={setShowSearchPage}
@@ -46,7 +45,6 @@ const Finder = ({ selected, setSelected, setShowPage }) => {
           image={image}
         />
       )}
-
       <Navbar
         selected={selected}
         setSelected={setSelected}
