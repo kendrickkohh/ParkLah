@@ -37,7 +37,7 @@ const Profile = ({
         <img src={`/images/profileImage.svg`} alt="profileImage" />
         <div className="profilePreferences">
           <div className="saved-list-item-a">
-            <h3>Distance</h3>
+            <h3>Maximum Distance</h3>
             <div className="dropdown">
               <Box sx={{}}>
                 <FormControl fullWidth>
@@ -64,7 +64,7 @@ const Profile = ({
 
         <div className="profilePreferences">
           <div className="saved-list-item-a">
-            <h3>Cost</h3>
+            <h3>Maximum Cost</h3>
             <div className="dropdown">
               <Box sx={{}}>
                 <FormControl fullWidth>
@@ -81,7 +81,7 @@ const Profile = ({
                     <MenuItem value={1.0}>$1.00/30mins</MenuItem>
                     <MenuItem value={1.5}>$1.50/30mins</MenuItem>
                     <MenuItem value={2.0}>$2.00/30mins</MenuItem>
-                    <MenuItem value={100}>$2.50/30mins & above</MenuItem>
+                    <MenuItem value={100}>No Limit</MenuItem>
                   </Select>
                 </FormControl>
               </Box>

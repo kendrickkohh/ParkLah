@@ -481,14 +481,15 @@ export default function Map({
               position,
               mapsDistance,
               mapsPrice
-            );
+            );            
             setCarparksFiltered(filteredCarparks);
             setCarparksFilteredNames(filteredCarparkNames);
             setCarparksFilteredPrice(filteredCarparkPrice);
             setCarparksAvailableLots(filteredAvailableLots);
             setDestination(position);
             setMapsPopup(1);
-
+              console.log(filteredCarparkNames);
+              
             mapRef.current?.panTo(position);
           }}
         />
