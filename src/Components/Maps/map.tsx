@@ -488,8 +488,6 @@ export default function Map({
             setCarparksAvailableLots(filteredAvailableLots);
             setDestination(position);
             setMapsPopup(1);
-            console.log(filteredCarparkNames);
-
             mapRef.current?.panTo(position);
           }}
         />

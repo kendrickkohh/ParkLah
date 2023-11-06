@@ -12,7 +12,7 @@ function App() {
   const [showPage, setShowPage] = useState(0);
   const [selected, setSelected] = useState(2);
   const [mapsDistance, setMapsDistance] = useState(600);
-  const [mapsPrice, setMapsPrice] = useState(1.5);
+  const [mapsPrice, setMapsPrice] = useState(10);
   const [preferences, setPreferences] = useState("");
 
   const [parkingSavedData, setParkingSavedData] = useState([
