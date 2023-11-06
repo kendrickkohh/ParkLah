@@ -78,10 +78,10 @@ const Profile = ({
                     label="Cost"
                     onChange={handleChangeC}
                   >
-                    <MenuItem value={1.0}>$1.00/30mins</MenuItem>
-                    <MenuItem value={1.5}>$1.50/30mins</MenuItem>
-                    <MenuItem value={2.0}>$2.00/30mins</MenuItem>
-                    <MenuItem value={100}>$2.50/30mins & above</MenuItem>
+                    <MenuItem value={1.0}>$0.60/30mins</MenuItem>
+                    <MenuItem value={1.5}>$1.20/30mins</MenuItem>
+                    <MenuItem value={2.0}>$1.80/30mins</MenuItem>
+                    <MenuItem value={100}>No Limit</MenuItem>
                   </Select>
                 </FormControl>
               </Box>

@@ -110,8 +110,8 @@ export default function Map({
     let prices: Array<Number> = [];
     const svy21Converter = new SVY21();
     carpark.Result.map((item) => {
-      const { weekdayRate, ppName, ppCode, geometries } = item;
-      if (geometries?.[0]?.coordinates) {
+      const { weekdayRate, ppName, ppCode, geometries, vehCat } = item;
+      if (geometries?.[0]?.coordinates && vehCat === "Car") {
         const coordinates = geometries[0].coordinates.split(",");
         const { lat, lon } = svy21Converter.computeLatLon(
           coordinates[1],
@@ -488,6 +488,7 @@ export default function Map({
             setCarparksAvailableLots(filteredAvailableLots);
             setDestination(position);
             setMapsPopup(1);
+            console.log(filteredCarparkNames);
 
             mapRef.current?.panTo(position);
           }}
