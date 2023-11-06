@@ -37,7 +37,7 @@ const SavedPopup = ({
           <Button
             variant="outlined"
             onClick={() => {
-              setShowPage(2);
+              setShowPage(0);
               setSelected(2);
               setMapsPopup(0);
             }}

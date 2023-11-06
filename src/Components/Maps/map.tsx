@@ -45,6 +45,7 @@ export default function Map({
   const [carparksAvailableLots, setCarparksAvailableLots] = useState<
     Array<String>
   >([]);
+  const [carparkDistances, setCarparkDistances] = useState<Array<Number>>([]);
   const [mapsPopup, setMapsPopup] = useState(0);
   const [tempSavedCarpark, setTempSavedCarpark] = useState({
     name: "",
@@ -106,9 +107,10 @@ export default function Map({
     let filteredCarparkNames: Array<String> = [];
     let filteredCarparkPrice: Array<String> = [];
     let filteredAvailableLots: Array<String> = [];
-    let distances: Array<Number> = [];
+    let filteredDistances: Array<Number> = [];
     let prices: Array<Number> = [];
     const svy21Converter = new SVY21();
+
     carpark.Result.map((item) => {
       const { weekdayRate, ppName, ppCode, geometries, vehCat } = item;
       if (geometries?.[0]?.coordinates && vehCat === "Car") {
@@ -140,7 +142,7 @@ export default function Map({
             filteredCarparkPrice.push(weekdayRate + "/30 mins");
             const availableLots = getAvailableLots(ppCode);
             filteredAvailableLots.push(availableLots);
-            distances.push(distance);
+            filteredDistances.push(Math.floor(distance * 100000 + 0.0006));
             prices.push(weekdayRateInt);
           }
         }
@@ -149,7 +151,7 @@ export default function Map({
 
     if (preferences === "Distance") {
       return insertionSortByDistance(
-        distances,
+        filteredDistances,
         filteredCarparks,
         filteredCarparkNames,
         filteredCarparkPrice,
@@ -158,6 +160,7 @@ export default function Map({
     } else if (preferences === "Price") {
       return insertionSortByPrice(
         prices,
+        filteredDistances,
         filteredCarparks,
         filteredCarparkNames,
         filteredCarparkPrice,
@@ -165,6 +168,7 @@ export default function Map({
       );
     } else {
       return {
+        filteredDistances,
         filteredCarparks,
         filteredCarparkNames,
         filteredCarparkPrice,
@@ -383,13 +387,13 @@ export default function Map({
   };
 
   const insertionSortByDistance = (
-    array,
+    filteredDistances,
     filteredCarparks,
     filteredCarparkNames,
     filteredCarparkPrice,
     filteredAvailableLots
   ) => {
-    const arr = [...array];
+    const arr = [...filteredDistances];
     const n = arr.length;
 
     for (let i = 1; i < n; i++) {
@@ -415,8 +419,9 @@ export default function Map({
       filteredCarparkPrice[j + 1] = currentFilteredCarparkPrice;
       filteredAvailableLots[j + 1] = currentFilteredAvailableLots;
     }
-
+    filteredDistances = arr;
     return {
+      filteredDistances,
       filteredCarparks,
       filteredCarparkNames,
       filteredCarparkPrice,
@@ -426,6 +431,7 @@ export default function Map({
 
   const insertionSortByPrice = (
     array,
+    filteredDistances,
     filteredCarparks,
     filteredCarparkNames,
     filteredCarparkPrice,
@@ -440,6 +446,7 @@ export default function Map({
       let currentFilteredCarparkNames = filteredCarparkNames[i];
       let currentFilteredCarparkPrice = filteredCarparkPrice[i];
       let currentFilteredAvailableLots = filteredAvailableLots[i];
+      let currentFilteredDistances = filteredDistances[i];
       let j = i - 1;
 
       while (j >= 0 && arr[j] > currentElement) {
@@ -448,17 +455,21 @@ export default function Map({
         filteredCarparkNames[j + 1] = filteredCarparkNames[j];
         filteredCarparkPrice[j + 1] = filteredCarparkPrice[j];
         filteredAvailableLots[j + 1] = filteredAvailableLots[j];
+        filteredDistances[j + 1] = filteredDistances[j];
         j--;
       }
 
       arr[j + 1] = currentElement;
+      filteredDistances[j + 1] = currentFilteredDistances;
       filteredCarparks[j + 1] = currentFilteredCarparks;
       filteredCarparkNames[j + 1] = currentFilteredCarparkNames;
       filteredCarparkPrice[j + 1] = currentFilteredCarparkPrice;
       filteredAvailableLots[j + 1] = currentFilteredAvailableLots;
     }
+    console.log(filteredDistances);
 
     return {
+      filteredDistances,
       filteredCarparks,
       filteredCarparkNames,
       filteredCarparkPrice,
@@ -472,6 +483,7 @@ export default function Map({
         <Places
           setDestination={(position) => {
             const {
+              filteredDistances,
               filteredCarparks,
               filteredCarparkNames,
               filteredCarparkPrice,
@@ -486,6 +498,7 @@ export default function Map({
             setCarparksFilteredNames(filteredCarparkNames);
             setCarparksFilteredPrice(filteredCarparkPrice);
             setCarparksAvailableLots(filteredAvailableLots);
+            setCarparkDistances(filteredDistances);
             setDestination(position);
             setMapsPopup(1);
             mapRef.current?.panTo(position);
@@ -555,6 +568,7 @@ export default function Map({
             carparksAvailableLots={carparksAvailableLots}
             setMapsPopup={setMapsPopup}
             setTempSavedCarpark={setTempSavedCarpark}
+            carparkDistances={carparkDistances}
           />
         )}
         {mapsPopup === 2 && (
